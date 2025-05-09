@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: events
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/events
+cloud:
+  vault:
+    enabled: false
