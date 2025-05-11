@@ -8,7 +8,6 @@ import com.seshira.events.domain.services.CreateEventService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.time.LocalDateTime;
@@ -21,7 +20,7 @@ public class CreateEventServiceTest {
 
     @Test
     @DisplayName("Should create a valid Event from a valid CreateEventPayload")
-    void testCreateEvent() throws URISyntaxException, MalformedURLException {
+    void testCreateEvent() throws URISyntaxException {
         // Given
         CreateEventService createEventService = new CreateEventService();
         CreateEventPayload payload = new CreateEventPayload(
@@ -32,9 +31,9 @@ public class CreateEventServiceTest {
             "Sample Location",
             "123 Sample St, Sample City, SC 12345",
             "Sample Organizer",
-            new URI("https://sampleorganizer.com").toURL(),
-            new URI("https://sampleevent.com").toURL(),
-            new URI("https://sampleevent.com/image.jpg").toURL()
+            new URI("https://sampleorganizer.com"),
+            new URI("https://sampleevent.com"),
+            new URI("https://sampleevent.com/image.jpg")
         );
 
         // When

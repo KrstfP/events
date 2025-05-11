@@ -7,7 +7,6 @@ import com.seshira.events.ports.inbound.dto.EventDto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.time.LocalDateTime;
@@ -18,7 +17,7 @@ class EventMapperTest {
 
     @Test
     @DisplayName("Shall be able to map an Event to EventDto and back")
-    void testEventMapper() throws URISyntaxException, MalformedURLException {
+    void testEventMapper() throws URISyntaxException {
         // Given
         CreateEventService createEventService = new CreateEventService();
         EventMapper eventMapper = new EventMapperImpl();
@@ -30,9 +29,9 @@ class EventMapperTest {
                 "Sample Location",
                 "123 Sample St, Sample City, SC 12345",
                 "Sample Organizer",
-                new URI("https://sampleorganizer.com").toURL(),
-                new URI("https://sampleevent.com").toURL(),
-                new URI("https://sampleevent.com/image.jpg").toURL()
+                new URI("https://sampleorganizer.com"),
+                new URI("https://sampleevent.com"),
+                new URI("https://sampleevent.com/image.jpg")
         ));
 
         Event subEvent1 = createEventService.createEvent(new CreateEventPayload("Sub Event 1"));
@@ -50,8 +49,8 @@ class EventMapperTest {
         assertEquals(event.getName(), eventDto.name());
         assertEquals(event.getStartDate(), eventDto.startDate());
         assertEquals(event.getEndDate(), eventDto.endDate());
-        assertEquals(event.getOrganizerUrl().toString(), eventDto.organizerUrl());
-        assertEquals(event.getImage().toString(), eventDto.image());
+        assertEquals(event.getOrganizerUrl(), eventDto.organizerUrl());
+        assertEquals(event.getImage(), eventDto.image());
         assertEquals(event.getLocationName(), eventDto.locationName());
         assertEquals(event.getLocationAddress(), eventDto.locationAddress());
 

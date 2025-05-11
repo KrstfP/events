@@ -2,15 +2,13 @@ package com.seshira.events.domain.models;
 
 import lombok.Getter;
 
+import java.net.URI;
 import java.time.LocalDateTime;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 @Getter
 public class Event extends Thing {
-    private static final Comparator<Event> chronologicalOrderComparator = Comparator.comparing(Event::getStartDate);
 
     private EventStatus eventStatus; // e.g., EventScheduled, EventCancelled
     private LocalDateTime startDate;
@@ -18,7 +16,7 @@ public class Event extends Thing {
     private String locationName;
     private String locationAddress;
     private String organizerName;
-    private URL organizerUrl;
+    private URI organizerUrl;
     private List<Event> subEvents = new ArrayList<>(); // List of sub-events (if any)
     private Event parentEvent = null; // Parent event (if any)
 
@@ -33,9 +31,9 @@ public class Event extends Thing {
                  String locationName,
                  String locationAddress,
                  String organizerName,
-                 URL organizerUrl,
-                 URL url,
-                 URL image) {
+                 URI organizerUrl,
+                 URI url,
+                 URI image) {
         super(id, name, description, url, image);
         this.eventStatus = EventStatus.EVENT_SCHEDULED; // Default status
         this.startDate = startDate;
