@@ -9,5 +9,4 @@ public enum EventStatus {
     EVENT_POSTPONED,
     EVENT_MOVED_ONLINE,
     EVENT_RESCHEDULED
-
 }

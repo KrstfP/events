@@ -1,6 +1,6 @@
 package com.seshira.events.domain.services;
 
-import com.seshira.events.domain.models.CreateEventPayload;
+import com.seshira.events.domain.services.models.CreateEventPayload;
 import com.seshira.events.domain.models.Event;
 import com.seshira.events.domain.models.EventAdditionalType;
 import org.springframework.stereotype.Service;

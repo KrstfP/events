@@ -1,6 +1,6 @@
 package com.seshira.events.domain;
 
-import com.seshira.events.domain.models.CreateEventPayload;
+import com.seshira.events.domain.services.models.CreateEventPayload;
 import com.seshira.events.domain.models.Event;
 import com.seshira.events.domain.models.EventAdditionalType;
 import com.seshira.events.domain.models.EventStatus;

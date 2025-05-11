@@ -1,4 +1,4 @@
-package com.seshira.events.domain.models;
+package com.seshira.events.domain.services.models;
 
 import java.net.URL;
 import java.time.LocalDateTime;

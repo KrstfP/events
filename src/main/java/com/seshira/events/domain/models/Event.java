@@ -5,7 +5,6 @@ import lombok.Getter;
 import java.time.LocalDateTime;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -51,6 +50,9 @@ public class Event extends Thing {
         return eventStatus;
     }
 
+    public boolean equals(Event other) {
+        return this.id.equals(other.id);
+    }
 
     public void scheduleSubEvent(Event event) {
         subEvents.add(event);
