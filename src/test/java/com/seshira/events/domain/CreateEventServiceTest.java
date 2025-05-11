@@ -2,6 +2,7 @@ package com.seshira.events.domain;
 
 import com.seshira.events.domain.models.CreateEventPayload;
 import com.seshira.events.domain.models.Event;
+import com.seshira.events.domain.models.EventAdditionalType;
 import com.seshira.events.domain.models.EventStatus;
 import com.seshira.events.domain.services.CreateEventService;
 import org.junit.jupiter.api.DisplayName;
@@ -67,5 +68,28 @@ public class CreateEventServiceTest {
         assertEquals(subEvent2, event.getSubEvents().get(1));
         assertEquals(event, subEvent1.getParentEvent());
         assertEquals(event, subEvent2.getParentEvent());
+    }
+
+    @Test
+    @DisplayName("Shall be able to create a congress, session or intervention event")
+    void testCreateCongressEvent() throws MalformedURLException {
+        // Given
+        CreateEventService createEventService = new CreateEventService();
+        CreateEventPayload payload = new CreateEventPayload(
+            "Sample Congress"
+        );
+
+        // When
+        Event congress = createEventService.createCongressEvent(payload);
+        Event session = createEventService.createSessionEvent(payload);
+        Event intervention = createEventService.createInterventionEvent(payload);
+
+        // Then
+        assertNotNull(congress);
+        assertEquals(congress.getAdditionalType(), EventAdditionalType.CONGRESS);
+        assertNotNull(session);
+        assertEquals(session.getAdditionalType(), EventAdditionalType.SESSION);
+        assertNotNull(intervention);
+        assertEquals(intervention.getAdditionalType(), EventAdditionalType.INTERVENTION);
     }
 }
