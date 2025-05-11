@@ -6,6 +6,7 @@ import java.net.URI;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Getter
 public class Event extends Thing {
@@ -20,10 +21,11 @@ public class Event extends Thing {
     private List<Event> subEvents = new ArrayList<>(); // List of sub-events (if any)
     private Event parentEvent = null; // Parent event (if any)
 
-    Event(String id) {
+    Event(UUID id) {
         super(id);
     }
-    public Event(String id,
+
+    public Event(UUID id,
                  String name,
                  String description,
                  LocalDateTime startDate,
@@ -33,7 +35,8 @@ public class Event extends Thing {
                  String organizerName,
                  URI organizerUrl,
                  URI url,
-                 URI image) {
+                 URI image,
+                 Event parentEvent) {
         super(id, name, description, url, image);
         this.eventStatus = EventStatus.EVENT_SCHEDULED; // Default status
         this.startDate = startDate;
@@ -42,6 +45,7 @@ public class Event extends Thing {
         this.locationAddress = locationAddress;
         this.organizerName = organizerName;
         this.organizerUrl = organizerUrl;
+        this.parentEvent = parentEvent;
     }
 
     public EventStatus eventStatus() {

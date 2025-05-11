@@ -1,39 +1,18 @@
 package com.seshira.events.domain.services;
 
-import com.seshira.events.domain.services.models.CreateEventPayload;
 import com.seshira.events.domain.models.Event;
-import com.seshira.events.domain.models.EventAdditionalType;
+import com.seshira.events.domain.services.models.CreateEventPayload;
 import org.springframework.stereotype.Service;
+
+import java.util.UUID;
 
 @Service
 public class CreateEventService {
 
-   private Event createEventWithType(CreateEventPayload createEventPayload, EventAdditionalType eventType) {
-        Event event = createEvent(createEventPayload);
-        event.setAdditionalType(eventType);
-        return event;
-    }
 
-    public Event createCongressEvent(CreateEventPayload createEventPayload) {
-        return createEventWithType(createEventPayload, EventAdditionalType.CONGRESS);
-    }
-
-    public Event createSessionEvent(CreateEventPayload createEventPayload) {
-        return createEventWithType(createEventPayload, EventAdditionalType.SESSION);
-    }
-
-    public Event createInterventionEvent(CreateEventPayload createEventPayload) {
-        return createEventWithType(createEventPayload, EventAdditionalType.INTERVENTION);
-    }
-
-    public Event createBreakEvent(CreateEventPayload createEventPayload) {
-        return createEventWithType(createEventPayload, EventAdditionalType.BREAK);
-    }
-
-    public Event createEvent(CreateEventPayload createEventPayload) {
-        String id = java.util.UUID.randomUUID().toString();
-        return new Event(
-                id,
+    public Event createEvent(CreateEventPayload createEventPayload, Event parent) {
+        Event event = new Event(
+                UUID.randomUUID(),
                 createEventPayload.name(),
                 createEventPayload.description(),
                 createEventPayload.startDate(),
@@ -43,7 +22,12 @@ public class CreateEventService {
                 createEventPayload.organizerName(),
                 createEventPayload.organizerUrl(),
                 createEventPayload.url(), // link to the event page
-                createEventPayload.image() // URL of an image
+                createEventPayload.image(), // URL of an image
+                parent
         );
+        if (parent != null) {
+            parent.scheduleSubEvent(event);
+        }
+        return event;
     }
 }

@@ -4,9 +4,10 @@ import jakarta.validation.constraints.NotBlank;
 
 import java.net.URI;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 public record CreateEventPayloadDto(
-        @NotBlank(message = "name is mandatory")
+        @NotBlank(message = "Name is mandatory")
         String name,
         String description,
         LocalDateTime startDate,
@@ -16,9 +17,10 @@ public record CreateEventPayloadDto(
         String organizerName,
         URI organizerUrl,
         URI url,
-        URI image
+        URI image,
+        UUID parentEventId
 ) {
-        public CreateEventPayloadDto(String name) {
-           this(name, null, null, null, null, null, null, null, null, null);
-        }
+    public CreateEventPayloadDto(String name) {
+        this(name, null, null, null, null, null, null, null, null, null, null);
+    }
 }
