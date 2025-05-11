@@ -7,6 +7,8 @@ import com.seshira.events.ports.inbound.dto.EventDto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.Optional;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class CreateEventServiceTest {
@@ -33,10 +35,10 @@ class CreateEventServiceTest {
         );
 
         // When
-        EventDto eventDto = createEventUseCaseService.createEvent(payloadDto);
+        Optional<EventDto> eventDto = createEventUseCaseService.createEvent(payloadDto);
 
         // Then
         assertNotNull(eventDto);
-        assertEquals("Sample Event", eventDto.name());
+        assertEquals("Sample Event", eventDto.get().name());
     }
 }

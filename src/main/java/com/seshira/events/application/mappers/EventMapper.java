@@ -6,10 +6,15 @@ import com.seshira.events.domain.services.models.CreateEventPayload;
 import com.seshira.events.ports.inbound.dto.CreateEventPayloadDto;
 import com.seshira.events.ports.inbound.dto.EventDto;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
-@Mapper(componentModel = "spring", nullValueMappingStrategy = org.mapstruct.NullValueMappingStrategy.RETURN_NULL)
+@Mapper(componentModel = "spring",
+        nullValueMappingStrategy = org.mapstruct.NullValueMappingStrategy.RETURN_NULL)
 public interface EventMapper {
     EventDto toDto(Event event);
+
+    @Mapping(target = "subEvents", ignore = true)
+    @Mapping(target = "parentEvent", ignore = true)
     Event toEntity(EventDto eventDto);
 
     CreateEventPayloadDto toDto(CreateEventPayload payload);

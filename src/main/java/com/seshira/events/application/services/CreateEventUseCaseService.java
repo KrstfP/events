@@ -9,6 +9,8 @@ import com.seshira.events.ports.inbound.dto.CreateEventPayloadDto;
 import com.seshira.events.ports.inbound.dto.EventDto;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class CreateEventUseCaseService implements CreateEventUseCase {
     private final CreateEventService createEventService;
@@ -20,9 +22,9 @@ public class CreateEventUseCaseService implements CreateEventUseCase {
     }
 
     @Override
-    public EventDto createEvent(CreateEventPayloadDto payloadDto) {
+    public Optional<EventDto> createEvent(CreateEventPayloadDto payloadDto) {
         CreateEventPayload payload = eventMapper.toEntity(payloadDto);
         Event event = createEventService.createEvent(payload);
-        return eventMapper.toDto(event);
+        return Optional.ofNullable(eventMapper.toDto(event));
     }
 }

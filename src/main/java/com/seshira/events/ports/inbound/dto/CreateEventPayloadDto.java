@@ -5,7 +5,6 @@ import jakarta.validation.constraints.NotBlank;
 import java.net.URI;
 import java.time.LocalDateTime;
 
-
 public record CreateEventPayloadDto(
         @NotBlank(message = "name is mandatory")
         String name,
@@ -16,10 +15,10 @@ public record CreateEventPayloadDto(
         String locationAddress,
         String organizerName,
         URI organizerUrl,
-        URI url, // link to the event page
+        URI url,
         URI image
 ) {
         public CreateEventPayloadDto(String name) {
-                this(name, null, null, null, null, null, null, null, null, null);
+           this(name, null, null, null, null, null, null, null, null, null);
         }
 }

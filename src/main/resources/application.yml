@@ -1,1 +1,12 @@
-spring.application.name=events
+spring:
+  application:
+    name: events
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/events
+  cloud:
+    vault:
+      enabled: false
+  jackson:
+    deserialization:
+      FAIL_ON_NULL_FOR_PRIMITIVES: true
