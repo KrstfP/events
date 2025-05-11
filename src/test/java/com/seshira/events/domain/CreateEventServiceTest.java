@@ -2,13 +2,15 @@ package com.seshira.events.domain;
 
 import com.seshira.events.domain.models.CreateEventPayload;
 import com.seshira.events.domain.models.Event;
+import com.seshira.events.domain.models.EventAdditionalType;
 import com.seshira.events.domain.models.EventStatus;
 import com.seshira.events.domain.services.CreateEventService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.net.MalformedURLException;
-import java.net.URL;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -19,7 +21,7 @@ public class CreateEventServiceTest {
 
     @Test
     @DisplayName("Should create a valid Event from a valid CreateEventPayload")
-    void testCreateEvent() throws MalformedURLException {
+    void testCreateEvent() throws URISyntaxException, MalformedURLException {
         // Given
         CreateEventService createEventService = new CreateEventService();
         CreateEventPayload payload = new CreateEventPayload(
@@ -30,9 +32,9 @@ public class CreateEventServiceTest {
             "Sample Location",
             "123 Sample St, Sample City, SC 12345",
             "Sample Organizer",
-            new URL("https://sampleorganizer.com"),
-            new URL("https://sampleevent.com"),
-            new URL("https://sampleevent.com/image.jpg")
+            new URI("https://sampleorganizer.com").toURL(),
+            new URI("https://sampleevent.com").toURL(),
+            new URI("https://sampleevent.com/image.jpg").toURL()
         );
 
         // When
@@ -40,7 +42,7 @@ public class CreateEventServiceTest {
 
         // Then
         assertNotNull(event);
-        assertEquals(event.eventStatus(), EventStatus.EVENT_SCHEDULED);
+        assertEquals(EventStatus.EVENT_SCHEDULED, event.eventStatus());
     }
 
 
@@ -67,5 +69,31 @@ public class CreateEventServiceTest {
         assertEquals(subEvent2, event.getSubEvents().get(1));
         assertEquals(event, subEvent1.getParentEvent());
         assertEquals(event, subEvent2.getParentEvent());
+    }
+
+    @Test
+    @DisplayName("Shall be able to create a congress, session or intervention event")
+    void testCreateCongressEvent() {
+        // Given
+        CreateEventService createEventService = new CreateEventService();
+        CreateEventPayload payload = new CreateEventPayload(
+            "Sample Congress"
+        );
+
+        // When
+        Event congress = createEventService.createCongressEvent(payload);
+        Event session = createEventService.createSessionEvent(payload);
+        Event intervention = createEventService.createInterventionEvent(payload);
+        Event breakEvent = createEventService.createBreakEvent(payload);
+
+        // Then
+        assertNotNull(congress);
+        assertEquals(EventAdditionalType.CONGRESS, congress.getAdditionalType());
+        assertNotNull(session);
+        assertEquals(EventAdditionalType.SESSION, session.getAdditionalType());
+        assertNotNull(intervention);
+        assertEquals(EventAdditionalType.INTERVENTION, intervention.getAdditionalType());
+        assertNotNull(breakEvent);
+        assertEquals(EventAdditionalType.BREAK, breakEvent.getAdditionalType());
     }
 }

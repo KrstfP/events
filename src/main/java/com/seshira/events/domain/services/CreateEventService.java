@@ -2,10 +2,34 @@ package com.seshira.events.domain.services;
 
 import com.seshira.events.domain.models.CreateEventPayload;
 import com.seshira.events.domain.models.Event;
+import com.seshira.events.domain.models.EventAdditionalType;
 import org.springframework.stereotype.Service;
 
 @Service
 public class CreateEventService {
+
+   private Event createEventWithType(CreateEventPayload createEventPayload, EventAdditionalType eventType) {
+        Event event = createEvent(createEventPayload);
+        event.setAdditionalType(eventType);
+        return event;
+    }
+
+    public Event createCongressEvent(CreateEventPayload createEventPayload) {
+        return createEventWithType(createEventPayload, EventAdditionalType.CONGRESS);
+    }
+
+    public Event createSessionEvent(CreateEventPayload createEventPayload) {
+        return createEventWithType(createEventPayload, EventAdditionalType.SESSION);
+    }
+
+    public Event createInterventionEvent(CreateEventPayload createEventPayload) {
+        return createEventWithType(createEventPayload, EventAdditionalType.INTERVENTION);
+    }
+
+    public Event createBreakEvent(CreateEventPayload createEventPayload) {
+        return createEventWithType(createEventPayload, EventAdditionalType.BREAK);
+    }
+
     public Event createEvent(CreateEventPayload createEventPayload) {
         String id = java.util.UUID.randomUUID().toString();
         return new Event(
