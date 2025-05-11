@@ -9,19 +9,19 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+@Getter
 public class Event extends Thing {
     private static final Comparator<Event> chronologicalOrderComparator = Comparator.comparing(Event::getStartDate);
 
     private EventStatus eventStatus; // e.g., EventScheduled, EventCancelled
-    @Getter
     private LocalDateTime startDate;
     private LocalDateTime endDate;
     private String locationName;
     private String locationAddress;
     private String organizerName;
     private URL organizerUrl;
-    @Getter
     private List<Event> subEvents = new ArrayList<>(); // List of sub-events (if any)
+    private Event parentEvent = null; // Parent event (if any)
 
     Event(String id) {
         super(id);
@@ -52,16 +52,10 @@ public class Event extends Thing {
     }
 
 
-    /// Add a new sub-event to the list of sub-events in chronological order
-    public boolean scheduleSubEvent(Event subEvent) {
-        if (subEvent != null) {
-            int index = Collections.binarySearch(subEvents, subEvent, chronologicalOrderComparator);
-            if (index < 0) {
-                index = -(index + 1); // Trouver la position d'insertion
-            }
-            subEvents.add(index, subEvent);
-            return true;
-        }
-        return false;
+    public void scheduleSubEvent(Event event) {
+        subEvents.add(event);
+        event.parentEvent = this;
     }
+
+
 }

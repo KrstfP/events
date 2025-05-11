@@ -14,4 +14,8 @@ public record CreateEventPayload (
     URL organizerUrl,
     URL url, // link to the event page
     URL image // URL of an image
-) {}
+) {
+    public CreateEventPayload(String name) {
+        this(name, null, null, null, null, null, null, null, null, null);
+    }
+}

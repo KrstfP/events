@@ -43,68 +43,29 @@ public class CreateEventServiceTest {
         assertEquals(event.eventStatus(), EventStatus.EVENT_SCHEDULED);
     }
 
+
     @Test
-    @DisplayName("Shall be able to add a sub-event to an event and get an ordered list of sub-events")
-    void addSubEvent() throws MalformedURLException {
+    @DisplayName("Shall be able to add a sub-event ")
+    void addSubEventAtPosition() {
         // Given
-        final int MINUTES_TO_ADD = 10;
-        final int DURATIONS_MINUTES = 30;
-        LocalDateTime before = LocalDateTime.now();
-        LocalDateTime after = before.plusMinutes(10);
         CreateEventService createEventService = new CreateEventService();
-
         CreateEventPayload payload = new CreateEventPayload(
-                "Sample Event",
-                "This is a sample event description.",
-                LocalDateTime.now(),
-                LocalDateTime.now(),
-                "Sample Location",
-                "123 Sample St, Sample City, SC 12345",
-                "Sample Organizer",
-                new URL("https://sampleorganizer.com"),
-                new URL("https://sampleevent.com"),
-                new URL("https://sampleevent.com/image.jpg")
-        );
-
-        CreateEventPayload payloadSubEventBefore = new CreateEventPayload(
-            "Event before",
-            "This is a sample event description.",
-                before,
-                before.plusMinutes(DURATIONS_MINUTES),
-            "Sample Location",
-            "123 Sample St, Sample City, SC 12345",
-            "Sample Organizer",
-            new URL("https://sampleorganizer.com"),
-            new URL("https://sampleevent.com"),
-            new URL("https://sampleevent.com/image.jpg")
-        );
-
-        CreateEventPayload payloadSubEventAfter = new CreateEventPayload(
-                "Event before",
-                "This is a sample event description.",
-                after,
-                after.plusMinutes(DURATIONS_MINUTES),
-                "Sample Location",
-                "123 Sample St, Sample City, SC 12345",
-                "Sample Organizer",
-                new URL("https://sampleorganizer.com"),
-                new URL("https://sampleevent.com"),
-                new URL("https://sampleevent.com/image.jpg")
+            "Sample Event"
         );
 
         Event event = createEventService.createEvent(payload);
-        Event subEventBefore = createEventService.createEvent(payloadSubEventBefore);
-        Event subEventAfter = createEventService.createEvent(payloadSubEventAfter);
+        Event subEvent1 = createEventService.createEvent(new CreateEventPayload("Sub Event 1"));
+        Event subEvent2 = createEventService.createEvent(new CreateEventPayload("Sub Event 2"));
 
         // When
-        boolean result = event.scheduleSubEvent(subEventAfter);
-        result &= event.scheduleSubEvent(subEventBefore);
+        event.scheduleSubEvent(subEvent1);
+        event.scheduleSubEvent(subEvent2);
 
         // Then
-        assertEquals(true, result);
         assertEquals(2, event.getSubEvents().size());
-        assertEquals(subEventBefore, event.getSubEvents().get(0));
-        assertEquals(subEventAfter, event.getSubEvents().get(1));
-
+        assertEquals(subEvent1, event.getSubEvents().get(0));
+        assertEquals(subEvent2, event.getSubEvents().get(1));
+        assertEquals(event, subEvent1.getParentEvent());
+        assertEquals(event, subEvent2.getParentEvent());
     }
 }
