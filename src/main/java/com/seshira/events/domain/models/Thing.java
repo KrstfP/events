@@ -2,8 +2,6 @@ package com.seshira.events.domain.models;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.stereotype.Service;
-
 import java.net.URL;
 
 @Getter

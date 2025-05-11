@@ -26,6 +26,9 @@ public class CreateEventService {
         return createEventWithType(createEventPayload, EventAdditionalType.INTERVENTION);
     }
 
+    public Event createBreakEvent(CreateEventPayload createEventPayload) {
+        return createEventWithType(createEventPayload, EventAdditionalType.BREAK);
+    }
 
     public Event createEvent(CreateEventPayload createEventPayload) {
         String id = java.util.UUID.randomUUID().toString();
