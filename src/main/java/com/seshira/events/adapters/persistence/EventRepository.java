@@ -24,14 +24,13 @@ public class EventRepository implements SaveEventRepository, GetEventRepository 
 
     @Override
     public Event byId(UUID eventId) {
-        return null;
+        var eventEntity = entityManager.find(com.seshira.events.adapters.persistence.entity.EventEntity.class, eventId);
+        return eventEntity == null ? null : eventEntityMapper.toDomain(eventEntity);
     }
 
     @Override
     @Transactional
     public void save(Event event) {
-        System.out.println(event);
-        System.out.println(eventEntityMapper.toEntity(event));
         entityManager.persist(eventEntityMapper.toEntity(event));
     }
 }
