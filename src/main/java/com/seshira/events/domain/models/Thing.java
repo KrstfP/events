@@ -4,19 +4,23 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.net.URI;
+import java.util.UUID;
 
 @Getter
 @Setter
 abstract class Thing {
-    final String id; // Unique identifier for the Thing
+    final UUID id; // Unique identifier for the Thing
     String name;
     String description;
-    private URI url;
     URI image; // URL to an image representing the Thing
     EventAdditionalType additionalType;
+    private URI url;
 
-    Thing(String id){ this.id = id;}
-    Thing(String id, String name, String description, URI url, URI image) {
+    Thing(UUID id) {
+        this.id = id;
+    }
+
+    Thing(UUID id, String name, String description, URI url, URI image) {
         this.id = id;
         this.name = name;
         this.description = description;
