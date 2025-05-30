@@ -21,10 +21,6 @@ public class Event extends Thing {
     private List<Event> subEvents = new ArrayList<>(); // List of sub-events (if any)
     private Event parentEvent = null; // Parent event (if any)
 
-    Event(UUID id) {
-        super(id);
-    }
-
     public Event(UUID id,
                  String name,
                  String description,
@@ -46,14 +42,6 @@ public class Event extends Thing {
         this.organizerName = organizerName;
         this.organizerUrl = organizerUrl;
         this.parentEvent = parentEvent;
-    }
-
-    public EventStatus eventStatus() {
-        return eventStatus;
-    }
-
-    public boolean equals(Event other) {
-        return this.id.equals(other.id);
     }
 
     public void scheduleSubEvent(Event event) {
