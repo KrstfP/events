@@ -7,6 +7,7 @@ import org.mapstruct.Mapper;
 @Mapper(componentModel = "spring",
         nullValueMappingStrategy = org.mapstruct.NullValueMappingStrategy.RETURN_NULL)
 public interface EventEntityMapper {
+
     EventEntity toEntity(Event event);
 
 }
