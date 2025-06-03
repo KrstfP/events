@@ -16,7 +16,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = false)
 public class EventEntity extends ThingEntity {
     @Enumerated(EnumType.STRING)
     private EventStatus eventStatus; // e.g., EventScheduled, EventCancelled
@@ -26,29 +26,9 @@ public class EventEntity extends ThingEntity {
     private String locationAddress;
     private String organizerName;
     private URI organizerUrl;
-    @OneToMany(mappedBy = "parentEvent", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "parentEvent", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<EventEntity> subEvents; // List of sub-events (if any)
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "parent_id")
     private EventEntity parentEvent = null; // Parent event (if any)
-
-    @Override
-    public String toString() {
-        String thing = super.toString();
-        return thing + '\n' + "EventEntity{" +
-                "eventStatus=" + eventStatus +
-                ", startDate=" + startDate +
-                ", endDate=" + endDate +
-                ", locationName='" + locationName + '\'' +
-                ", locationAddress='" + locationAddress + '\'' +
-                ", organizerName='" + organizerName + '\'' +
-                ", organizerUrl=" + organizerUrl +
-                ", subEvents=" + subEvents +
-                ", parentEvent=" + parentEvent +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", image=" + image +
-                ", additionalType=" + additionalType +
-                '}';
-    }
 }
