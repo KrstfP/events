@@ -1,7 +1,9 @@
 package com.seshira.events.adapters.persistence;
 
+import com.seshira.events.adapters.persistence.entity.EventEntity;
 import com.seshira.events.adapters.persistence.mappers.EventEntityMapper;
 import com.seshira.events.domain.models.Event;
+import com.seshira.events.ports.outbound.GetEventChildrenRepository;
 import com.seshira.events.ports.outbound.GetEventRepository;
 import com.seshira.events.ports.outbound.SaveEventRepository;
 import jakarta.persistence.EntityManager;
@@ -9,10 +11,11 @@ import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.UUID;
 
 @Repository
-public class EventRepository implements SaveEventRepository, GetEventRepository {
+public class EventRepository implements SaveEventRepository, GetEventRepository, GetEventChildrenRepository {
     @PersistenceContext
     private final EntityManager entityManager;
     private final EventEntityMapper eventEntityMapper;
@@ -32,5 +35,21 @@ public class EventRepository implements SaveEventRepository, GetEventRepository 
     @Transactional
     public void save(Event event) {
         entityManager.persist(eventEntityMapper.toEntity(event));
+        entityManager.flush();
+    }
+
+    @Override
+    public List<Event> byParentId(UUID parentEventId) {
+        List<EventEntity> subEventEntities = entityManager
+                .createQuery(
+                        "SELECT e FROM EventEntity e WHERE e.parentEvent.id = :parentId",
+                        EventEntity.class
+                )
+                .setParameter("parentId", parentEventId)
+                .getResultList();
+
+        return subEventEntities.stream()
+                .map(eventEntityMapper::toDomain)
+                .toList();
     }
 }

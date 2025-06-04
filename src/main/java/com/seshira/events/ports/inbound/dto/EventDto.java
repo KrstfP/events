@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 
 import java.net.URI;
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.UUID;
 
 @Data
@@ -29,7 +28,6 @@ public class EventDto {
     private String locationAddress;
     private String organizerName;
     private URI organizerUrl;
-    private List<EventDto> subEvents;
     private ParentDto parentEvent;
 }
 

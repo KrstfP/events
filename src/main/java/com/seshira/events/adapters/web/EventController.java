@@ -23,7 +23,7 @@ public class EventController {
     }
 
     @GetMapping("/events/{eventId}")
-    public ResponseEntity<EventDto> getEventById(@PathVariable UUID eventId) {
+    public ResponseEntity<EventDto> getEventById(@Valid @PathVariable UUID eventId) {
         return this.getEventUseCase.byId(eventId)
                 .map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
