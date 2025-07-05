@@ -59,6 +59,7 @@ public class GetEventServiceTest {
                     "Sample Parent Event"
             );
             Optional<EventDto> eventDto = createEventUseCaseService.createEvent(payloadDto);
+            var parentEventId = eventDto.map(EventDto::getId).orElse(null);
             CreateEventPayloadDto childrenPayloadDto = new CreateEventPayloadDto(
                     "Sample Event",
                     "This is a sample event description.",
@@ -70,7 +71,7 @@ public class GetEventServiceTest {
                     null,
                     null,
                     null,
-                     eventDto.map(EventDto::getId).orElse(null)
+                    eventDto.map(EventDto::getId).orElse(null)
             );
 
             // When
@@ -80,8 +81,9 @@ public class GetEventServiceTest {
             }
 
             // Then
-            List<EventDto> children = getEventUseCaseService.byParentId(eventDto.map(EventDto::getId).orElse(null));
+            List<EventDto> children = getEventUseCaseService.byParentId(parentEventId);
             assertEquals(5, children.size());
+            children.forEach(child -> assertEquals(parentEventId, child.getParentEvent().getId()));
         }
 
     }

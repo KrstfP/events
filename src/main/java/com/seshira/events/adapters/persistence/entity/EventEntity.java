@@ -19,7 +19,7 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = false)
 public class EventEntity extends ThingEntity {
     @Enumerated(EnumType.STRING)
-    private EventStatus eventStatus; // e.g., EventScheduled, EventCancelled
+    private EventStatus eventStatus;
     private LocalDateTime startDate;
     private LocalDateTime endDate;
     private String locationName;
