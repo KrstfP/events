@@ -1,13 +1,13 @@
 services:
   event-service:
-    image: maven:3.9.9-eclipse-temurin-21-alpine
-    working_dir: /app
-    volumes:
-      - ./:/app
+    image: seshira:0.1 #maven:3.9.9-eclipse-temurin-21-alpine
+    #    working_dir: /app
+    #    volumes:
+    #      - ./:/app
     ports:
       - "8080:8080"
       - "5005:5005"
-    command: mvn spring-boot:run -Dspring-boot.run.jvmArguments="-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005"
+    #    command: mvn spring-boot:run -Dspring-boot.run.jvmArguments="-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005"
     environment:
       SPRING_PROFILES_ACTIVE: dev
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/db
