@@ -40,7 +40,7 @@ class CreateEventServiceTest {
 
 
     @Nested
-    public class EventCanBeCreated {
+    class EventCanBeCreated {
         @Test
         @DisplayName("Shall be able to create a basic event")
         void testCreateEvent() {
@@ -117,7 +117,7 @@ class CreateEventServiceTest {
     }
 
     @Nested
-    public class CongressCanBeCreated {
+    class CongressCanBeCreated {
         @Test
         @DisplayName("Shall be able to create a congress event")
         void testCreateCongress() {
@@ -196,16 +196,13 @@ class CreateEventServiceTest {
             );
 
             // When, Then
-            assertThrows(RuntimeException.class, () -> {
-                Optional<EventDto> eventDto = createEventUseCaseService.createCongress(payloadWithGenericParentDto);
-            });
-
+            assertThrows(RuntimeException.class, () -> createEventUseCaseService.createCongress(payloadWithGenericParentDto));
             assertNotNull(createEventUseCaseService.createCongress(payloadWithEventSeriesParentDto));
         }
     }
 
     @Nested
-    public class SessionCanBeCreated {
+    class SessionCanBeCreated {
         @Test
         @DisplayName("A session event cannot be created without a parent event of type Congress")
         void testCreateSessionShallFailIfNoOrIncorrectParentType() {
@@ -249,12 +246,8 @@ class CreateEventServiceTest {
             );
 
             // When, Then
-            assertThrows(BadInputException.class, () -> {
-                Optional<EventDto> eventDto = createEventUseCaseService.createSession(payloadNoCongressDto);
-            });
-            assertThrows(BadInputException.class, () -> {
-                Optional<EventDto> eventDto = createEventUseCaseService.createSession(payloadNoParentDto);
-            });
+            assertThrows(BadInputException.class, () -> createEventUseCaseService.createSession(payloadNoCongressDto));
+            assertThrows(BadInputException.class, () -> createEventUseCaseService.createSession(payloadNoParentDto));
 
         }
 
