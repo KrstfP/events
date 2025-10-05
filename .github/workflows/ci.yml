@@ -50,9 +50,10 @@ jobs:
       - name: Run mutation tests
         run: |
           mvn test-compile org.pitest:pitest-maven:mutationCoverage          
-          python3 ci/generate-mutation-xml.py ./target/pit-reports/mutations.xml ./target/pit-reports/mutation-score.json         
+          python3 ci/generate-mutation-json.py ./target/pit-reports/mutations.xml ./target/pit-reports/mutation-score.json         
 
       - name: Publish mutation testing report
+        if: github.ref == 'refs/heads/main'
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
