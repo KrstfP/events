@@ -7,4 +7,8 @@ import java.util.Optional;
 
 public interface CreateEventUseCase {
     Optional<EventDto> createEvent(CreateEventPayloadDto payloadDto);
+
+    Optional<EventDto> createCongress(CreateEventPayloadDto payloadDto);
+
+    Optional<EventDto> createSession(CreateEventPayloadDto payloadDto);
 }

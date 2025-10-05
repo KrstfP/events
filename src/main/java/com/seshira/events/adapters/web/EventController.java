@@ -33,7 +33,7 @@ public class EventController {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @GetMapping("/events/{eventId}/childrens")
+    @GetMapping("/events/{eventId}/children")
     public ResponseEntity<List<EventDto>> getEventChildrenById(@Valid @PathVariable UUID eventId) {
         return ResponseEntity.ok(getEventChildrenUseCase.byParentId(eventId));
     }

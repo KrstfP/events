@@ -1,6 +1,7 @@
 package com.seshira.events.domain.models;
 
 import lombok.Getter;
+import lombok.Setter;
 
 import java.net.URI;
 import java.time.LocalDateTime;
@@ -19,7 +20,8 @@ public class Event extends Thing {
     private String organizerName;
     private URI organizerUrl;
     private List<Event> subEvents = new ArrayList<>(); // List of sub-events (if any)
-    private Event parentEvent = null; // Parent event (if any)
+    @Setter
+    private Event parentEvent; // Parent event (if any)
 
     public Event(UUID id,
                  String name,

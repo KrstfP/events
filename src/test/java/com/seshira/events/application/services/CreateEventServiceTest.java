@@ -109,5 +109,75 @@ class CreateEventServiceTest {
         }
     }
 
+    @Nested
+    public class CongressCanBeCreated {
+        @Test
+        @DisplayName("Shall be able to create a congress event")
+        void testCreateCongress() {
+            // Given
+            CreateEventUseCaseService createEventUseCaseService = new CreateEventUseCaseService(
+                    new CreateEventService(),
+                    new EventMapperImpl(),
+                    getEventRepository,
+                    saveEventRepository
+            );
+
+            CreateEventPayloadDto payloadDto = new CreateEventPayloadDto(
+                    "Sample Congress",
+                    "This is a sample congress description.",
+                    null,
+                    null,
+                    "Sample Location",
+                    "123 Sample St, Sample City, SC 12345",
+                    "Sample Organizer",
+                    null,
+                    null,
+                    null,
+                    null
+            );
+
+            // When
+            Optional<EventDto> eventDto = createEventUseCaseService.createCongress(payloadDto);
+
+            // Then
+            assertNotNull(eventDto);
+            assertTrue(eventDto.isPresent());
+            assertEquals("Sample Congress", eventDto.get().getName());
+        }
+
+        @Test
+        @DisplayName("A congress event can only be created with a parent event which is an EventSeries")
+        void testCreateCongressWithParent() {
+            // Given
+            CreateEventUseCaseService createEventUseCaseService = new CreateEventUseCaseService(
+                    new CreateEventService(),
+                    new EventMapperImpl(),
+                    getEventRepository,
+                    saveEventRepository
+            );
+            CreateEventPayloadDto parentPayloadDto = new CreateEventPayloadDto(
+                    "A Congress"
+            );
+            Optional<EventDto> parentEventDto = createEventUseCaseService.createEvent(parentPayloadDto);
+            CreateEventPayloadDto payloadDto = new CreateEventPayloadDto(
+                    "A Congress trying to be part of a Congress",
+                    "This is a sample congress description.",
+                    null,
+                    null,
+                    "Sample Location",
+                    "123 Sample St, Sample City, SC 12345",
+                    "Sample Organizer",
+                    null,
+                    null,
+                    null,
+                    parentEventDto.map(EventDto::getId).orElse(null)
+            );
+
+            // When, Then
+            assertThrows(RuntimeException.class, () -> {
+                Optional<EventDto> eventDto = createEventUseCaseService.createCongress(payloadDto);
+            });
+        }
+    }
 
 }
