@@ -59,4 +59,5 @@ jobs:
           label: mutation
           status: "${{ env.MUTATION_SCORE }}%"
           color: ${{ env.MUTATION_SCORE < 50 && 'red' || env.MUTATION_SCORE < 80 && 'yellow' || 'green' }}
+          path: .github/badges/mutation.svg
 
