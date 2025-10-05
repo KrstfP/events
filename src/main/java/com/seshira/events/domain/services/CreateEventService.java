@@ -10,6 +10,23 @@ import java.util.UUID;
 @Service
 public class CreateEventService {
 
+    public EventSeries createEventSeries(CreateEventPayload createEventPayload, Event parent) {
+        EventSeries event = new EventSeries(
+                UUID.randomUUID(),
+                createEventPayload.name(),
+                createEventPayload.description(),
+                createEventPayload.startDate(),
+                createEventPayload.endDate(),
+                createEventPayload.locationName(),
+                createEventPayload.locationAddress(),
+                createEventPayload.organizerName(),
+                createEventPayload.organizerUrl(),
+                createEventPayload.url(), // link to the event page
+                createEventPayload.image(), // URL of an image
+                parent
+        );
+        return event;
+    }
 
     public SessionEducationEvent createSession(CreateEventPayload createEventPayload, Event parent) {
         boolean parentIsNullOrCongress = parent == null || parent.getAdditionalType() != EventAdditionalType.CONGRESS;
@@ -29,15 +46,12 @@ public class CreateEventService {
                 createEventPayload.image(), // URL of an image
                 parent
         );
-        if (parent != null) {
-            parent.scheduleSubEvent(event);
-        }
         return event;
     }
 
     public CongressEducationEvent createCongress(CreateEventPayload createEventPayload, Event parent) {
-        boolean parentIsNullOrEventSeries = parent == null || parent instanceof EventSeries;
-        if (!parentIsNullOrEventSeries)
+        boolean parentIsNotNullAndNotEventSeries = parent != null && !(parent.getAdditionalType() == EventAdditionalType.EVENT_SERIES);
+        if (parentIsNotNullAndNotEventSeries)
             throw new BadInputException("A congress can only be a sub-event of an EventSeries");
         CongressEducationEvent event = new CongressEducationEvent(
                 UUID.randomUUID(),
@@ -53,9 +67,6 @@ public class CreateEventService {
                 createEventPayload.image(), // URL of an image
                 parent
         );
-        if (parent != null) {
-            parent.scheduleSubEvent(event);
-        }
         return event;
     }
 
@@ -74,9 +85,6 @@ public class CreateEventService {
                 createEventPayload.image(), // URL of an image
                 parent
         );
-        if (parent != null) {
-            parent.scheduleSubEvent(event);
-        }
         return event;
     }
 }

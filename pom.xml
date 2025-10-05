@@ -36,7 +36,9 @@
         <jacoco.version>0.8.11</jacoco.version>
         <lombok.version>1.18.36</lombok.version>
         <jakarta.persistence.version>3.1.0</jakarta.persistence.version>
-        <mockito.version>5.18.0</mockito.version> <!-- Or the latest version -->
+        <mockito.version>5.18.0</mockito.version>
+        <org.pitest.version>1.20.4</org.pitest.version>
+        <org.pitest.junit.plugin.version>1.2.3</org.pitest.junit.plugin.version>
     </properties>
     <dependencies>
         <dependency>
@@ -143,6 +145,31 @@
 
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.pitest</groupId>
+                <artifactId>pitest-maven</artifactId>
+                <version>${org.pitest.version}</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.pitest</groupId>
+                        <artifactId>pitest-junit5-plugin</artifactId>
+                        <version>${org.pitest.junit.plugin.version}</version>
+                    </dependency>
+                </dependencies>
+                <configuration>
+                    <targetClasses>
+                        <param>com.seshira.events.domain.*</param>
+                    </targetClasses>
+                    <mutators>
+                        <mutator>STRONGER</mutator>
+                    </mutators>
+                    <threads>4</threads>
+                    <outputFormats>
+                        <param>HTML</param>
+                        <param>XML</param>
+                    </outputFormats>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>

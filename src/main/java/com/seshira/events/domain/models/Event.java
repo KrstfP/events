@@ -5,8 +5,6 @@ import lombok.Setter;
 
 import java.net.URI;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 @Getter
@@ -19,7 +17,6 @@ public class Event extends Thing {
     private String locationAddress;
     private String organizerName;
     private URI organizerUrl;
-    private List<Event> subEvents = new ArrayList<>(); // List of sub-events (if any)
     @Setter
     private Event parentEvent; // Parent event (if any)
 
@@ -45,11 +42,5 @@ public class Event extends Thing {
         this.organizerUrl = organizerUrl;
         this.parentEvent = parentEvent;
     }
-
-    public void scheduleSubEvent(Event event) {
-        subEvents.add(event);
-        event.parentEvent = this;
-    }
-
-
+    
 }

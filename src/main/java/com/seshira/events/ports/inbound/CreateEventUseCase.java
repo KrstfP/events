@@ -11,4 +11,7 @@ public interface CreateEventUseCase {
     Optional<EventDto> createCongress(CreateEventPayloadDto payloadDto);
 
     Optional<EventDto> createSession(CreateEventPayloadDto payloadDto);
+
+    Optional<EventDto> createEventSeries(CreateEventPayloadDto payloadDto);
+
 }
