@@ -35,6 +35,17 @@ jobs:
       - name: Build and run tests
         run: mvn clean verify
 
+      - name: Run SonarQube analysis
+        if: |
+          github.ref == 'refs/heads/main' ||
+          (github.event_name == 'pull_request' && github.base_ref == 'main')
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
+          -Dsonar.projectKey=KrstfP_events \
+          -Dsonar.organization=Krstf \
+          -Dsonar.token=$SONAR_TOKEN
+
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v5
         with:

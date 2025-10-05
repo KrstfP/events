@@ -39,6 +39,8 @@
         <mockito.version>5.18.0</mockito.version>
         <org.pitest.version>1.20.4</org.pitest.version>
         <org.pitest.junit.plugin.version>1.2.3</org.pitest.junit.plugin.version>
+        <sonar.maven.plugin.version>5.2.0.4988</sonar.maven.plugin.version>
+        <sonar.coverage.jacoco.xmlReportPaths>target/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
     </properties>
     <dependencies>
         <dependency>
@@ -145,6 +147,11 @@
 
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.sonarsource.scanner.maven</groupId>
+                <artifactId>sonar-maven-plugin</artifactId>
+                <version>${sonar.maven.plugin.version}</version>
+            </plugin>
             <plugin>
                 <groupId>org.pitest</groupId>
                 <artifactId>pitest-maven</artifactId>
