@@ -58,4 +58,5 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./target/pit-reports
           publish_branch: gh-pages
+          destination_dir: pit-reports
 
