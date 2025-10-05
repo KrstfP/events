@@ -5,6 +5,7 @@ import xml.etree.ElementTree as ET
 
 # Path to mutations.xml
 xml_file = sys.argv[1]
+output_file = sys.argv[2]
 tree = ET.parse(xml_file)
 root = tree.getroot()
 
@@ -22,7 +23,5 @@ badge_json = {
     "color": "green" if score >= 80 else "yellow" if score >= 50 else "red"
 }
 
-with open('mutation-score.json', 'w') as f:
+with open(output_file, 'w') as f:
     json.dump(badge_json, f)
-# print(f"Mutation score: {score}% -> mutation-score.json")
-print(score)
