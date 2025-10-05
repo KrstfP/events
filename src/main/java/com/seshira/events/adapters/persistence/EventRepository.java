@@ -37,7 +37,6 @@ public class EventRepository implements SaveEventRepository, GetEventRepository,
     @Override
     @Transactional
     public void save(Event event) {
-        EventEntity e = eventEntityMapper.toEntity(event);
         entityManager.persist(eventEntityMapper.toEntity(event));
         entityManager.flush();
     }

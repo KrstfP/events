@@ -29,14 +29,14 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @ActiveProfiles("test") // make sure application-test.yml uses H2
 @Transactional
 @TestConstructor(autowireMode = TestConstructor.AutowireMode.ALL)
-public class FilterEventServiceTest {
+class FilterEventServiceTest {
 
-    private final int NB_CONGRESSES = 14;
-    private final int NB_SESSIONS = 8;
+    private static final int NB_CONGRESSES = 14;
+    private static final int NB_SESSIONS = 8;
     private final FilterEventRepository filterEventRepository;
     private final CreateEventUseCaseService createEventUseCaseService;
 
-    public FilterEventServiceTest(SaveEventRepository saveEventRepository, FilterEventRepository filterEventRepository, GetEventRepository getEventRepository) {
+    FilterEventServiceTest(SaveEventRepository saveEventRepository, FilterEventRepository filterEventRepository, GetEventRepository getEventRepository) {
         this.filterEventRepository = filterEventRepository;
         this.createEventUseCaseService = new CreateEventUseCaseService(
                 new CreateEventService(),
@@ -77,7 +77,7 @@ public class FilterEventServiceTest {
     }
 
     @Nested
-    public class EventsCanBeFilteredByAdditionalType {
+    class EventsCanBeFilteredByAdditionalType {
         @Test
         @DisplayName("Shall support filtering events by additional type")
         void testReturnAllEventsIfAdditionalTypeIsNull() {

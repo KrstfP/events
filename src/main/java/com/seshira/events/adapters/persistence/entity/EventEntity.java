@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 
 import java.net.URI;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Entity
 @Table(name = "events")
@@ -26,8 +25,6 @@ public class EventEntity extends ThingEntity {
     private String locationAddress;
     private String organizerName;
     private URI organizerUrl;
-    @OneToMany(mappedBy = "parentEvent", cascade = CascadeType.PERSIST, orphanRemoval = true, fetch = FetchType.LAZY)
-    private List<EventEntity> subEvents; // List of sub-events (if any)
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "parent_id")
     private EventEntity parentEvent = null; // Parent event (if any)

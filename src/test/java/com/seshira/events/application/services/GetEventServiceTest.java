@@ -24,13 +24,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @ActiveProfiles("test") // make sure application-test.yml uses H2
 @Transactional
 @TestConstructor(autowireMode = TestConstructor.AutowireMode.ALL)
-public class GetEventServiceTest {
+class GetEventServiceTest {
 
     private final GetEventRepository getEventRepository;
     private final GetEventChildrenRepository getEventChildrenRepository;
     private final SaveEventRepository saveEventRepository;
 
-    public GetEventServiceTest(GetEventRepository getEventRepository, GetEventChildrenRepository getEventChildrenRepository, SaveEventRepository saveEventRepository) {
+    GetEventServiceTest(GetEventRepository getEventRepository, GetEventChildrenRepository getEventChildrenRepository, SaveEventRepository saveEventRepository) {
         this.getEventRepository = getEventRepository;
         this.getEventChildrenRepository = getEventChildrenRepository;
         this.saveEventRepository = saveEventRepository;
@@ -38,7 +38,7 @@ public class GetEventServiceTest {
 
 
     @Nested
-    public class EventChildrenCanBeRetrieved {
+    class EventChildrenCanBeRetrieved {
         @Test
         @DisplayName("Shall be able to get all children of an event")
         void testCreateEvent() {
