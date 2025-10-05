@@ -2,9 +2,9 @@ spring:
   application:
     name: events
   datasource:
-    url: jdbc:postgresql://localhost:5432/mydb
-    username: myuser
-    password: mypassword
+    url: jdbc:postgresql://localhost:5432/db
+    username: dba
+    password: dba
   jpa:
     hibernate:
       ddl-auto: update

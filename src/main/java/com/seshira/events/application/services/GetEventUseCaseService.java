@@ -25,6 +25,7 @@ public class GetEventUseCaseService implements GetEventUseCase, GetEventChildren
         this.eventMapper = eventMapper;
     }
 
+
     @Override
     public Optional<EventDto> byId(UUID eventId) {
         Event event = getEventRepository.byId(eventId);

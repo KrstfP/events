@@ -10,6 +10,7 @@ import java.util.UUID;
 @Setter
 abstract class Thing {
     final UUID id; // Unique identifier for the Thing
+    final ThingType type;
     String name;
     String description;
     URI image; // URL to an image representing the Thing
@@ -17,8 +18,9 @@ abstract class Thing {
     private URI url;
 
 
-    Thing(UUID id, String name, String description, URI url, URI image) {
+    Thing(UUID id, ThingType type, String name, String description, URI url, URI image) {
         this.id = id;
+        this.type = type;
         this.name = name;
         this.description = description;
         this.url = url;

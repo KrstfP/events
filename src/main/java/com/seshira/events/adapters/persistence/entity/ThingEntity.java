@@ -1,6 +1,7 @@
 package com.seshira.events.adapters.persistence.entity;
 
 import com.seshira.events.domain.models.EventAdditionalType;
+import com.seshira.events.domain.models.ThingType;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
@@ -19,6 +20,8 @@ import java.util.UUID;
 @AllArgsConstructor
 public abstract class ThingEntity {
     String name;
+    @Enumerated(EnumType.STRING)
+    ThingType type;
     String description;
     URI image; // URL to an image representing the Thing
     @Enumerated(EnumType.STRING)

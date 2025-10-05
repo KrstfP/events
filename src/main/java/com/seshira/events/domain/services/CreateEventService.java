@@ -1,9 +1,7 @@
 package com.seshira.events.domain.services;
 
-import com.seshira.events.domain.models.CongressEducationEvent;
-import com.seshira.events.domain.models.Event;
-import com.seshira.events.domain.models.EventSeries;
-import com.seshira.events.domain.models.SessionEducationEvent;
+import com.seshira.events.domain.exception.BadInputException;
+import com.seshira.events.domain.models.*;
 import com.seshira.events.domain.services.models.CreateEventPayload;
 import org.springframework.stereotype.Service;
 
@@ -14,9 +12,9 @@ public class CreateEventService {
 
 
     public SessionEducationEvent createSession(CreateEventPayload createEventPayload, Event parent) {
-//        boolean parentIsNullOrCongress = parent == null || parent.getAdditionalType() == EventAdditionalType.CONGRESS;
-//        if (!parentIsNullOrCongress)
-//            throw new RuntimeException("A session can only be a sub-event of a Congress");
+        boolean parentIsNullOrCongress = parent == null || parent.getAdditionalType() != EventAdditionalType.CONGRESS;
+        if (parentIsNullOrCongress)
+            throw new BadInputException("A session can only be a sub-event of a Congress");
         SessionEducationEvent event = new SessionEducationEvent(
                 UUID.randomUUID(),
                 createEventPayload.name(),
@@ -40,7 +38,7 @@ public class CreateEventService {
     public CongressEducationEvent createCongress(CreateEventPayload createEventPayload, Event parent) {
         boolean parentIsNullOrEventSeries = parent == null || parent instanceof EventSeries;
         if (!parentIsNullOrEventSeries)
-            throw new RuntimeException("A congress can only be a sub-event of an EventSeries");
+            throw new BadInputException("A congress can only be a sub-event of an EventSeries");
         CongressEducationEvent event = new CongressEducationEvent(
                 UUID.randomUUID(),
                 createEventPayload.name(),

@@ -35,7 +35,7 @@ public class Event extends Thing {
                  URI url,
                  URI image,
                  Event parentEvent) {
-        super(id, name, description, url, image);
+        super(id, ThingType.EVENT, name, description, url, image);
         this.eventStatus = EventStatus.EVENT_SCHEDULED; // Default status
         this.startDate = startDate;
         this.endDate = endDate;
