@@ -18,7 +18,7 @@ score = round((killed / total) * 100) if total > 0 else 0
 # Build JSON for Shields.io
 badge_json = {
     "schemaVersion": 1,
-    "label": "mutation",
+    "label": "Mutation testing",
     "message": f"{score}%",
     "color": "green" if score >= 80 else "yellow" if score >= 50 else "red"
 }
