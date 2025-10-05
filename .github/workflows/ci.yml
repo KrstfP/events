@@ -52,7 +52,8 @@ jobs:
           mvn test-compile org.pitest:pitest-maven:mutationCoverage
           MUTATION_SCORE=$(python3 ci/generate-mutation-xml.py target/pit-reports/mutations.xml)
           echo "MUTATION_SCORE=$MUTATION_SCORE" >> $GITHUB_ENV
-
+          mkdir -p .github/badges
+  
       - name: Create mutation testing badge
         uses: emibcn/badge-action@v2
         with:
