@@ -49,13 +49,12 @@ jobs:
 
       - name: Run mutation tests
         run: |
-          mvn test-compile org.pitest:pitest-maven:mutationCoverage
-          mkdir -p .github/badges
-          python3 ci/generate-mutation-xml.py target/pit-reports/mutations.xml target/pit-reports/mutation-score.json         
+          mvn test-compile org.pitest:pitest-maven:mutationCoverage          
+          python3 ci/generate-mutation-xml.py ./target/pit-reports/mutations.xml ./target/pit-reports/mutation-score.json         
 
       - name: Publish mutation testing report
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./target/pit-reports/
+          publish_dir: ./sheshira/events/pit-reports/
 
