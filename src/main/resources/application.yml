@@ -1,6 +1,16 @@
 spring:
   application:
     name: events
+  datasource:
+    url: jdbc:postgresql://postgres:5432/db
+    username: dba
+    password: dba
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
   cloud:
     vault:
       enabled: false
