@@ -35,7 +35,7 @@
         <jacoco.version>0.8.13</jacoco.version>
         <lombok.version>1.18.36</lombok.version>
         <mockito.version>5.18.0</mockito.version>
-        <org.pitest.version>1.20.4</org.pitest.version>
+        <org.pitest.version>1.20.5</org.pitest.version>
         <org.pitest.junit.plugin.version>1.2.3</org.pitest.junit.plugin.version>
         <sonar.maven.plugin.version>5.2.0.4988</sonar.maven.plugin.version>
         <sonar.coverage.jacoco.xmlReportPaths>target/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
