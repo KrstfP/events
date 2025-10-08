@@ -6,13 +6,18 @@ on:
   pull_request:
     branches: [ main ]
 
+permissions:
+  contents: read
+  pull-requests: read
+
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          persist-credentials: false
 
       - name: Set up JDK 21
         uses: actions/setup-java@v4
@@ -42,8 +47,9 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_ORGANIZATION: ${{ secrets.SONAR_ORGANIZATION }}
-        run:
-          mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=KrstfP_events -Dsonar.organization=$SONAR_ORGANIZATION
+        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
+          -Dsonar.projectKey=KrstfP_events \
+          -Dsonar.organization=$SONAR_ORGANIZATION
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v5
@@ -59,8 +65,14 @@ jobs:
 
       - name: Run mutation tests
         run: |
-          mvn test-compile org.pitest:pitest-maven:mutationCoverage          
-          python3 ci/generate-mutation-json.py ./target/pit-reports/mutations.xml ./target/pit-reports/mutation-score.json         
+          mvn test-compile org.pitest:pitest-maven:mutationCoverage
+          python3 ci/generate-mutation-json.py ./target/pit-reports/mutations.xml ./target/pit-reports/mutation-score.json
+
+      - name: Upload mutation score artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: mutation-score
+          path: ./target/pit-reports/mutation-score.json
 
       - name: Publish mutation testing report
         if: github.ref == 'refs/heads/main'
@@ -71,45 +83,8 @@ jobs:
           publish_branch: gh-pages
           destination_dir: pit-reports
 
-      - name: Compare mutation score with previous version
-        if: github.event_name == 'pull_request'
+      - name: Show mutation score summary
         run: |
-          # Get previous mutation score from GitHub Pages (if it exists)
-          PREV_URL="https://krstfp.github.io/events/pit-reports/mutation-score.json"
-          echo "Fetching previous score from $PREV_URL..."
-          curl -s -o prev.json $PREV_URL || echo '{"message": "0"}' > prev.json
-          
-          PREV_SCORE=$(jq -r '.message' prev.json | tr -d '%')
-          CURR_SCORE=$(jq -r '.message' ./target/pit-reports/mutation-score.json | tr -d '%')
-          
-          echo "Previous score: $PREV_SCORE"
-          echo "Current score: $CURR_SCORE"
-          
-          DELTA=$(echo "$CURR_SCORE - $PREV_SCORE" | bc)
-          echo "delta=$DELTA" >> $GITHUB_ENV
-          echo "prev_score=$PREV_SCORE" >> $GITHUB_ENV
-          echo "curr_score=$CURR_SCORE" >> $GITHUB_ENV
-
-      - name: Comment mutation score on PR
-        if: github.event_name == 'pull_request'
-        uses: actions/github-script@v7
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            const prev = parseFloat(process.env.prev_score);
-            const curr = parseFloat(process.env.curr_score);
-            const delta = parseFloat(process.env.delta);
-            const trend = delta > 0 ? '📈 Increased' : delta < 0 ? '📉 Decreased' : '➖ Unchanged';
-            const emoji = delta < 0 ? '⚠️' : '✅';
-            const body = `
-            🧬 **Mutation Testing Results**
-            > Current: **${curr}%**  
-            > Previous: **${prev}%**  
-            > ${trend} by ${Math.abs(delta)}% ${emoji}
-            `;
-            await github.rest.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body
-            });
+          SCORE=$(jq -r '.message' ./target/pit-reports/mutation-score.json)
+          echo "### 🧬 Mutation Score Report" >> $GITHUB_STEP_SUMMARY
+          echo "Current mutation score: **${SCORE}%**" >> $GITHUB_STEP_SUMMARY
