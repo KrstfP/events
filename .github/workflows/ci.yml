@@ -47,9 +47,7 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_ORGANIZATION: ${{ secrets.SONAR_ORGANIZATION }}
-        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
-          -Dsonar.projectKey=KrstfP_events \
-          -Dsonar.organization=$SONAR_ORGANIZATION
+        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=KrstfP_events -Dsonar.organization=$SONAR_ORGANIZATION
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v5
