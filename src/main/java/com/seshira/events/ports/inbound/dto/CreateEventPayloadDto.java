@@ -23,4 +23,8 @@ public record CreateEventPayloadDto(
     public CreateEventPayloadDto(String name) {
         this(name, null, null, null, null, null, null, null, null, null, null);
     }
+
+    public CreateEventPayloadDto(String name, UUID parentEventId) {
+        this(name, null, null, null, null, null, null, null, null, null, parentEventId);
+    }
 }

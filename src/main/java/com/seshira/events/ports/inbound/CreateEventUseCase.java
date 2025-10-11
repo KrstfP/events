@@ -12,6 +12,7 @@ public interface CreateEventUseCase {
 
     Optional<EventDto> createSession(CreateEventPayloadDto payloadDto);
 
-    Optional<EventDto> createEventSeries(CreateEventPayloadDto payloadDto);
+    Optional<EventDto> createIntervention(CreateEventPayloadDto payloadDto);
 
+    Optional<EventDto> createEventSeries(CreateEventPayloadDto payloadDto);
 }

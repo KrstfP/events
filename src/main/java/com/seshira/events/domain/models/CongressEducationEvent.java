@@ -1,12 +1,10 @@
 package com.seshira.events.domain.models;
 
-import java.net.URI;
-import java.time.LocalDateTime;
 import java.util.UUID;
 
 public class CongressEducationEvent extends EducationEvent {
-    public CongressEducationEvent(UUID id, String name, String description, LocalDateTime startDate, LocalDateTime endDate, String locationName, String locationAddress, String organizerName, URI organizerUrl, URI url, URI image, Event parentEvent) {
-        super(id, name, description, startDate, endDate, locationName, locationAddress, organizerName, organizerUrl, url, image, parentEvent);
+    public CongressEducationEvent(UUID id, String name) {
+        super(id, name);
         this.setAdditionalType(EventAdditionalType.CONGRESS);
     }
 }
