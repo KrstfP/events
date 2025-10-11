@@ -63,5 +63,12 @@ public class EventController {
                 .orElseGet(() -> ResponseEntity.badRequest().build());
     }
 
+    @PostMapping("/events/createIntevention")
+    public ResponseEntity<EventDto> createIntervention(@Valid @RequestBody CreateEventPayloadDto eventInput) {
+        return this.createEventUseCase.createIntervention(eventInput)
+                .map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.badRequest().build());
+    }
+
 
 }

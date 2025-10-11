@@ -17,6 +17,11 @@ abstract class Thing {
     EventAdditionalType additionalType;
     private URI url;
 
+    Thing(UUID id, ThingType type, String name) {
+        this.id = id;
+        this.type = type;
+        this.name = name;
+    }
 
     Thing(UUID id, ThingType type, String name, String description, URI url, URI image) {
         this.id = id;

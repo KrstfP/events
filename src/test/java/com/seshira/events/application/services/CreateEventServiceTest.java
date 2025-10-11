@@ -298,4 +298,93 @@ class CreateEventServiceTest {
         }
     }
 
+    @Nested
+    class InterventionCanBeCreated {
+        @Test
+        @DisplayName("A intervention event cannot be created without a parent event of type Session")
+        void testCreateInterventionShallFailIfNoOrIncorrectParentType() {
+            // Given
+            CreateEventUseCaseService createEventUseCaseService = new CreateEventUseCaseService(
+                    new CreateEventService(),
+                    new EventMapperImpl(),
+                    getEventRepository,
+                    saveEventRepository
+            );
+            CreateEventPayloadDto parentPayloadDto = new CreateEventPayloadDto(
+                    "Not a sessions"
+            );
+            Optional<EventDto> parentEventDto = createEventUseCaseService.createEvent(parentPayloadDto);
+            CreateEventPayloadDto payloadNoSessionDto = new CreateEventPayloadDto(
+                    "A Intervention trying to be part of a non Congress",
+                    "This is a sample session description.",
+                    null,
+                    null,
+                    "Sample Location",
+                    "123 Sample St, Sample City, SC 12345",
+                    "Sample Organizer",
+                    null,
+                    null,
+                    null,
+                    parentEventDto.map(EventDto::getId).orElse(null)
+            );
+
+            CreateEventPayloadDto payloadNoParentDto = new CreateEventPayloadDto(
+                    "A Session without parent",
+                    "This is a sample session description.",
+                    null,
+                    null,
+                    "Sample Location",
+                    "123 Sample St, Sample City, SC 12345",
+                    "Sample Organizer",
+                    null,
+                    null,
+                    null,
+                    null
+            );
+
+            // When, Then
+            assertThrows(BadInputException.class, () -> createEventUseCaseService.createIntervention(payloadNoSessionDto));
+            assertThrows(BadInputException.class, () -> createEventUseCaseService.createIntervention(payloadNoParentDto));
+        }
+
+        @Test
+        @DisplayName("Shall be able to create an intervention event")
+        void testCreateIntervention() {
+            // Given
+            CreateEventUseCaseService createEventUseCaseService = new CreateEventUseCaseService(
+                    new CreateEventService(),
+                    new EventMapperImpl(),
+                    getEventRepository,
+                    saveEventRepository
+            );
+
+            GetEventChildrenUseCase getEventChildrenUseCase = new GetEventUseCaseService(
+                    getEventRepository,
+                    getEventChildrenRepository,
+                    new EventMapperImpl()
+            );
+            CreateEventPayloadDto parentPayloadDto = new CreateEventPayloadDto(
+                    "Not a congress"
+            );
+            Optional<EventDto> congressEventDto = createEventUseCaseService.createCongress(parentPayloadDto);
+            parentPayloadDto = new CreateEventPayloadDto(
+                    "A Session",
+                    congressEventDto.map(EventDto::getId).orElse(null)
+            );
+            Optional<EventDto> sessionEventDto = createEventUseCaseService.createSession(parentPayloadDto);
+            UUID parentEventId = sessionEventDto.map(EventDto::getId).orElse(null);
+            CreateEventPayloadDto payloadDto = new CreateEventPayloadDto(
+                    "Sample Session",
+                    parentEventId
+            );
+
+            // When
+            Optional<EventDto> eventDto = createEventUseCaseService.createIntervention(payloadDto);
+
+            // Then
+            assertNotNull(eventDto);
+            assertTrue(eventDto.isPresent());
+            assertTrue(getEventChildrenUseCase.byParentId(parentEventId).stream().anyMatch(e -> e.getId().equals(eventDto.get().getId())));
+        }
+    }
 }

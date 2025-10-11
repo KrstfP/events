@@ -80,4 +80,17 @@ public class CreateEventUseCaseService implements CreateEventUseCase {
         saveEventRepository.save(event);
         return Optional.ofNullable(eventMapper.toDto(event));
     }
+
+    @Override
+    public Optional<EventDto> createIntervention(CreateEventPayloadDto payloadDto) {
+        CreateEventPayload payload = eventMapper.toEntity(payloadDto);
+        UUID parentEventId = payloadDto.parentEventId();
+        Event parent =
+                parentEventId != null
+                        ? getEventRepository.byId(parentEventId)
+                        : null;
+        Event event = createEventService.createIntervention(payload, parent);
+        saveEventRepository.save(event);
+        return Optional.ofNullable(eventMapper.toDto(event));
+    }
 }

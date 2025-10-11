@@ -9,16 +9,26 @@ import java.util.UUID;
 
 @Getter
 public class Event extends Thing {
-
-    private EventStatus eventStatus; // e.g., EventScheduled, EventCancelled
+    @Setter
+    private EventStatus eventStatus = EventStatus.EVENT_SCHEDULED;     // e.g., EventScheduled, EventCancelled
+    @Setter
     private LocalDateTime startDate;
+    @Setter
     private LocalDateTime endDate;
+    @Setter
     private String locationName;
+    @Setter
     private String locationAddress;
+    @Setter
     private String organizerName;
+    @Setter
     private URI organizerUrl;
     @Setter
     private Event parentEvent; // Parent event (if any)
+
+    public Event(UUID id, String name) {
+        super(id, ThingType.EVENT, name);
+    }
 
     public Event(UUID id,
                  String name,
@@ -33,7 +43,6 @@ public class Event extends Thing {
                  URI image,
                  Event parentEvent) {
         super(id, ThingType.EVENT, name, description, url, image);
-        this.eventStatus = EventStatus.EVENT_SCHEDULED; // Default status
         this.startDate = startDate;
         this.endDate = endDate;
         this.locationName = locationName;
@@ -42,5 +51,5 @@ public class Event extends Thing {
         this.organizerUrl = organizerUrl;
         this.parentEvent = parentEvent;
     }
-    
+
 }

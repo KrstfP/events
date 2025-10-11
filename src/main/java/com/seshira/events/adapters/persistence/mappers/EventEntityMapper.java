@@ -2,9 +2,7 @@ package com.seshira.events.adapters.persistence.mappers;
 
 import com.seshira.events.adapters.persistence.entity.EventEntity;
 import com.seshira.events.domain.models.Event;
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.Named;
+import org.mapstruct.*;
 
 @Mapper(componentModel = "spring",
         nullValueMappingStrategy = org.mapstruct.NullValueMappingStrategy.RETURN_NULL)
@@ -14,7 +12,14 @@ public interface EventEntityMapper {
     EventEntity toEntity(Event event);
 
     @Mapping(target = "parentEvent", source = "parentEvent", qualifiedByName = "mapParentEntityToDomain")
+    @BeanMapping(qualifiedByName = "mainConstructor")
     Event toDomain(EventEntity eventEntity);
+
+    @Named("mainConstructor")
+    @ObjectFactory
+    default Event mainConstructor(EventEntity entity) {
+        return new Event(entity.getId(), entity.getName());
+    }
 
     // Only map parent ID + name
     @Named("mapParentEntityToDomain")
