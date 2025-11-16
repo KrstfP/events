@@ -1,0 +1,96 @@
+package com.seshira.events.event.application.services;
+
+import com.seshira.events.event.application.mappers.EventMapper;
+import com.seshira.events.event.domain.models.Event;
+import com.seshira.events.event.domain.services.CreateEventService;
+import com.seshira.events.event.domain.services.models.CreateEventPayload;
+import com.seshira.events.event.ports.inbound.CreateEventUseCase;
+import com.seshira.events.event.ports.inbound.dto.CreateEventPayloadDto;
+import com.seshira.events.event.ports.inbound.dto.EventDto;
+import com.seshira.events.event.ports.outbound.GetEventRepository;
+import com.seshira.events.event.ports.outbound.SaveEventRepository;
+import org.springframework.stereotype.Service;
+
+import java.util.Optional;
+import java.util.UUID;
+
+@Service
+public class CreateEventUseCaseService implements CreateEventUseCase {
+    private final CreateEventService createEventService;
+    private final EventMapper eventMapper;
+    private final GetEventRepository getEventRepository;
+    private final SaveEventRepository saveEventRepository;
+
+    public CreateEventUseCaseService(CreateEventService createEventService, EventMapper eventMapper, GetEventRepository getEventRepository, SaveEventRepository saveEventRepository) {
+        this.createEventService = createEventService;
+        this.eventMapper = eventMapper;
+        this.getEventRepository = getEventRepository;
+        this.saveEventRepository = saveEventRepository;
+    }
+
+    @Override
+    public Optional<EventDto> createEvent(CreateEventPayloadDto payloadDto) {
+        CreateEventPayload payload = eventMapper.toEntity(payloadDto);
+        UUID parentEventId = payloadDto.parentEventId();
+        Event parent =
+                parentEventId != null
+                        ? getEventRepository.byId(parentEventId)
+                        : null;
+        Event event = createEventService.createEvent(payload, parent);
+        saveEventRepository.save(event);
+        return Optional.ofNullable(eventMapper.toDto(event));
+    }
+
+    @Override
+    public Optional<EventDto> createEventSeries(CreateEventPayloadDto payloadDto) {
+        CreateEventPayload payload = eventMapper.toEntity(payloadDto);
+        UUID parentEventId = payloadDto.parentEventId();
+        Event parent =
+                parentEventId != null
+                        ? getEventRepository.byId(parentEventId)
+                        : null;
+        Event event = createEventService.createEventSeries(payload, parent);
+        saveEventRepository.save(event);
+        return Optional.ofNullable(eventMapper.toDto(event));
+    }
+
+
+    @Override
+    public Optional<EventDto> createCongress(CreateEventPayloadDto payloadDto) {
+        CreateEventPayload payload = eventMapper.toEntity(payloadDto);
+        UUID parentEventId = payloadDto.parentEventId();
+        Event parent =
+                parentEventId != null
+                        ? getEventRepository.byId(parentEventId)
+                        : null;
+        Event event = createEventService.createCongress(payload, parent);
+        saveEventRepository.save(event);
+        return Optional.ofNullable(eventMapper.toDto(event));
+    }
+
+    @Override
+    public Optional<EventDto> createSession(CreateEventPayloadDto payloadDto) {
+        CreateEventPayload payload = eventMapper.toEntity(payloadDto);
+        UUID parentEventId = payloadDto.parentEventId();
+        Event parent =
+                parentEventId != null
+                        ? getEventRepository.byId(parentEventId)
+                        : null;
+        Event event = createEventService.createSession(payload, parent);
+        saveEventRepository.save(event);
+        return Optional.ofNullable(eventMapper.toDto(event));
+    }
+
+    @Override
+    public Optional<EventDto> createIntervention(CreateEventPayloadDto payloadDto) {
+        CreateEventPayload payload = eventMapper.toEntity(payloadDto);
+        UUID parentEventId = payloadDto.parentEventId();
+        Event parent =
+                parentEventId != null
+                        ? getEventRepository.byId(parentEventId)
+                        : null;
+        Event event = createEventService.createIntervention(payload, parent);
+        saveEventRepository.save(event);
+        return Optional.ofNullable(eventMapper.toDto(event));
+    }
+}
