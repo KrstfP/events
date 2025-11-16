@@ -17,6 +17,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.TestConstructor;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -73,6 +75,54 @@ class CreateEventServiceTest {
             assertNotNull(eventDto);
             assertTrue(eventDto.isPresent());
             assertEquals("Sample Event", eventDto.get().getName());
+        }
+
+
+        // java
+        @Test
+        @DisplayName("Shall be able to create an event with all fields set")
+        void testCreateEventWithAllFields() throws URISyntaxException {
+            // Given
+            CreateEventUseCaseService createEventUseCaseService = new CreateEventUseCaseService(
+                    new CreateEventService(),
+                    new EventMapperImpl(),
+                    getEventRepository,
+                    saveEventRepository
+            );
+
+            CreateEventPayloadDto payloadDto = new CreateEventPayloadDto(
+                    "Full Event",
+                    "Full description for the event covering all fields.",
+                    null, // startDate
+                    null, // endDate
+                    "Full Location Name",
+                    "123 Full Address, City, Country",
+                    "Full Organizer",
+                    new URI("https://organizer.example.org"),
+                    new URI("https://event.example.org"),
+                    new URI("https://event.example.org/image.png"),
+                    null // parentEventId
+            );
+
+            // When
+            Optional<EventDto> eventDtoOpt = createEventUseCaseService.createEvent(payloadDto);
+
+            // Then
+            assertNotNull(eventDtoOpt);
+            assertTrue(eventDtoOpt.isPresent());
+            EventDto eventDto = eventDtoOpt.get();
+            assertEquals("Full Event", eventDto.getName());
+            assertEquals("Full description for the event covering all fields.", eventDto.getDescription());
+            assertEquals("Full Location Name", eventDto.getLocationName());
+            assertEquals("123 Full Address, City, Country", eventDto.getLocationAddress());
+            assertEquals("Full Organizer", eventDto.getOrganizerName());
+            assertEquals(new URI("https://organizer.example.org"), eventDto.getOrganizerUrl());
+            assertEquals(new URI("https://event.example.org"), eventDto.getUrl());
+            assertEquals(new URI("https://event.example.org/image.png"), eventDto.getImage());
+            assertNull(eventDto.getParentEvent());
+            assertNotNull(eventDto.getId());
+            assertNull(eventDto.getStartDate());
+            assertNull(eventDto.getEndDate());
         }
 
         @Test
