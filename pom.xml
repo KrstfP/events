@@ -37,7 +37,7 @@
         <mockito.version>5.21.0</mockito.version>
         <org.pitest.version>1.21.1</org.pitest.version>
         <org.pitest.junit.plugin.version>1.2.3</org.pitest.junit.plugin.version>
-        <sonar.maven.plugin.version>5.2.0.4988</sonar.maven.plugin.version>
+        <sonar.maven.plugin.version>5.5.0.6356</sonar.maven.plugin.version>
         <sonar.coverage.jacoco.xmlReportPaths>target/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
     </properties>
     <dependencies>
