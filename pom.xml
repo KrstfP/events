@@ -34,7 +34,7 @@
         <mapstruct.version>1.6.3</mapstruct.version>
         <jacoco.version>0.8.14</jacoco.version>
         <lombok.version>1.18.36</lombok.version>
-        <mockito.version>5.20.0</mockito.version>
+        <mockito.version>5.21.0</mockito.version>
         <org.pitest.version>1.21.1</org.pitest.version>
         <icu4j.version>78.1</icu4j.version>
         <commons-validator.version>1.10.0</commons-validator.version>
