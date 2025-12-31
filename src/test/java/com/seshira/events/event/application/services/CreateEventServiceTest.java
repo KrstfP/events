@@ -19,6 +19,7 @@ import org.springframework.test.context.TestConstructor;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.time.ZonedDateTime;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -90,11 +91,14 @@ class CreateEventServiceTest {
                     saveEventRepository
             );
 
+            String start = "2024-05-20T12:30:00Z";
+            String end = "2024-05-20T12:30:00Z";
+
             CreateEventPayloadDto payloadDto = new CreateEventPayloadDto(
                     "Full Event",
                     "Full description for the event covering all fields.",
-                    null, // startDate
-                    null, // endDate
+                    ZonedDateTime.parse(start), // startDate
+                    ZonedDateTime.parse(end), // endDate
                     "Full Location Name",
                     "123 Full Address, City, Country",
                     "Full Organizer",
@@ -116,13 +120,13 @@ class CreateEventServiceTest {
             assertEquals("Full Location Name", eventDto.getLocationName());
             assertEquals("123 Full Address, City, Country", eventDto.getLocationAddress());
             assertEquals("Full Organizer", eventDto.getOrganizerName());
+            assertEquals(ZonedDateTime.parse(start), eventDto.getStartDate());
+            assertEquals(ZonedDateTime.parse(end), eventDto.getEndDate());
             assertEquals(new URI("https://organizer.example.org"), eventDto.getOrganizerUrl());
             assertEquals(new URI("https://event.example.org"), eventDto.getUrl());
             assertEquals(new URI("https://event.example.org/image.png"), eventDto.getImage());
             assertNull(eventDto.getParentEvent());
             assertNotNull(eventDto.getId());
-            assertNull(eventDto.getStartDate());
-            assertNull(eventDto.getEndDate());
         }
 
         @Test

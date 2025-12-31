@@ -8,7 +8,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import java.net.URI;
-import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 
 @Entity
 @Table(name = "events")
@@ -19,8 +19,8 @@ import java.time.LocalDateTime;
 public class EventEntity extends ThingEntity {
     @Enumerated(EnumType.STRING)
     private EventStatus eventStatus;
-    private LocalDateTime startDate;
-    private LocalDateTime endDate;
+    private ZonedDateTime startDate;
+    private ZonedDateTime endDate;
     private String locationName;
     private String locationAddress;
     private String organizerName;

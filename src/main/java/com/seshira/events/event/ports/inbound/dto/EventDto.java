@@ -9,7 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.net.URI;
-import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.UUID;
 
 @Data
@@ -24,8 +24,8 @@ public class EventDto {
     private URI image; // URL vers une image représentant la chose
     private EventAdditionalType additionalType;
     private EventStatus eventStatus; // ex: EventScheduled, EventCancelled
-    private LocalDateTime startDate;
-    private LocalDateTime endDate;
+    private ZonedDateTime startDate;
+    private ZonedDateTime endDate;
     private String locationName;
     private String locationAddress;
     private String organizerName;

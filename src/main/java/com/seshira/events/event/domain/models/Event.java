@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.net.URI;
-import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.UUID;
 
 @Getter
@@ -14,9 +14,9 @@ public class Event extends Thing {
     @Setter
     private EventStatus eventStatus = EventStatus.EVENT_SCHEDULED;     // e.g., EventScheduled, EventCancelled
     @Setter
-    private LocalDateTime startDate;
+    private ZonedDateTime startDate;
     @Setter
-    private LocalDateTime endDate;
+    private ZonedDateTime endDate;
     @Setter
     private String locationName;
     @Setter
@@ -35,8 +35,8 @@ public class Event extends Thing {
     public Event(UUID id,
                  String name,
                  String description,
-                 LocalDateTime startDate,
-                 LocalDateTime endDate,
+                 ZonedDateTime startDate,
+                 ZonedDateTime endDate,
                  String locationName,
                  String locationAddress,
                  String organizerName,

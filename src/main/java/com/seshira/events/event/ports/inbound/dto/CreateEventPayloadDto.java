@@ -3,15 +3,15 @@ package com.seshira.events.event.ports.inbound.dto;
 import jakarta.validation.constraints.NotBlank;
 
 import java.net.URI;
-import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.UUID;
 
 public record CreateEventPayloadDto(
         @NotBlank(message = "Name is mandatory")
         String name,
         String description,
-        LocalDateTime startDate,
-        LocalDateTime endDate,
+        ZonedDateTime startDate,
+        ZonedDateTime endDate,
         String locationName,
         String locationAddress,
         String organizerName,

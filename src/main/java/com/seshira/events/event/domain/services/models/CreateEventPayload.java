@@ -1,13 +1,13 @@
 package com.seshira.events.event.domain.services.models;
 
 import java.net.URI;
-import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 
 public record CreateEventPayload(
         String name,
         String description,
-        LocalDateTime startDate,
-        LocalDateTime endDate,
+        ZonedDateTime startDate,
+        ZonedDateTime endDate,
         String locationName,
         String locationAddress,
         String organizerName,
