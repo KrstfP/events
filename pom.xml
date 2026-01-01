@@ -36,8 +36,6 @@
         <lombok.version>1.18.36</lombok.version>
         <mockito.version>5.21.0</mockito.version>
         <org.pitest.version>1.22.0</org.pitest.version>
-        <icu4j.version>78.1</icu4j.version>
-        <commons-validator.version>1.10.0</commons-validator.version>
         <org.pitest.junit.plugin.version>1.2.3</org.pitest.junit.plugin.version>
         <sonar.maven.plugin.version>5.5.0.6356</sonar.maven.plugin.version>
         <sonar.coverage.jacoco.xmlReportPaths>target/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
@@ -113,16 +111,6 @@
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.ibm.icu</groupId>
-            <artifactId>icu4j</artifactId>
-            <version>${icu4j.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>commons-validator</groupId>
-            <artifactId>commons-validator</artifactId>
-            <version>${commons-validator.version}</version>
-        </dependency>
-        <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <scope>runtime</scope>
@@ -131,6 +119,16 @@
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>commons-validator</groupId>
+            <artifactId>commons-validator</artifactId>
+            <version>1.10.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.ibm.icu</groupId>
+            <artifactId>icu4j</artifactId>
+            <version>78.1</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -170,7 +168,7 @@
                 </dependencies>
                 <configuration>
                     <targetClasses>
-                        <param>com.seshira.events.domain.*</param>
+                        <param>com.seshira.events.*.domain.**</param>
                     </targetClasses>
                     <mutators>
                         <mutator>STRONGER</mutator>
