@@ -7,3 +7,4 @@
 
 ## Mutation testing report
 
+mvn pitest:mutationCoverage -Dpitest.verbose=true
