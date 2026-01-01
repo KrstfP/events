@@ -36,13 +36,9 @@ public class Person extends Thing {
 
         StringBuilder sb = new StringBuilder();
         for (String part : parts) {
-            if (sb.length() > 0) sb.append(" ");
+            if (!sb.isEmpty()) sb.append(" ");
             sb.append(part);
         }
         return sb.toString();
-    }
-
-    private String formatFullName() {
-        return this.givenName + " " + this.familyName;
     }
 }

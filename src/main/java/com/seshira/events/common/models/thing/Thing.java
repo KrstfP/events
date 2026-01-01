@@ -18,13 +18,13 @@ public abstract class Thing {
     EventAdditionalType additionalType;
     private URI url;
 
-    public Thing(UUID id, ThingType type, String name) {
+    protected Thing(UUID id, ThingType type, String name) {
         this.id = id;
         this.type = type;
         this.name = name;
     }
 
-    public Thing(UUID id, ThingType type, String name, String description, URI url, URI image) {
+    protected Thing(UUID id, ThingType type, String name, String description, URI url, URI image) {
         this.id = id;
         this.type = type;
         this.name = name;

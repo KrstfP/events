@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @ActiveProfiles("test") // make sure application-test.yml uses H2
 @Transactional
 @TestConstructor(autowireMode = TestConstructor.AutowireMode.ALL)
-public class CreatePersonServiceTest {
+class CreatePersonServiceTest {
     CreatePersonUseCase createPersonUseCase;
 
     public CreatePersonServiceTest(CreatePersonUseCase createPersonUseCase) {
