@@ -1,0 +1,1635 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <link rel="stylesheet" type="text/css" href="../style.css">
+</head>
+<body>
+
+
+<h1>CreateEventService.java</h1>
+
+<table class="src">
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7fb82f73_1'/>
+1
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_1'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>package com.seshira.events.event.domain.services;</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7fb82f73_2'/>
+2
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_2'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7fb82f73_3'/>
+3
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_3'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import com.seshira.events.common.exception.BadInputException;</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7fb82f73_4'/>
+4
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_4'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import com.seshira.events.event.domain.models.*;</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7fb82f73_5'/>
+5
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_5'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import com.seshira.events.event.domain.services.models.CreateEventPayload;</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7fb82f73_6'/>
+6
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_6'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import org.springframework.stereotype.Service;</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7fb82f73_7'/>
+7
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_7'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7fb82f73_8'/>
+8
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_8'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import java.util.UUID;</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7fb82f73_9'/>
+9
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_9'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7fb82f73_10'/>
+10
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_10'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>@Service</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7fb82f73_11'/>
+11
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_11'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>public class CreateEventService {</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7fb82f73_12'/>
+12
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_12'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7fb82f73_13'/>
+13
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_13'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    private void updateEventFromPayload(Event event, CreateEventPayload createEventPayload) {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7fb82f73_14'/>
+14
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_14'>1</a>
+<span>
+1. updateEventFromPayload : removed call to com/seshira/events/event/domain/models/Event::setName &rarr; SURVIVED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='survived'>        event.setName(createEventPayload.name());</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7fb82f73_15'/>
+15
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_15'>1</a>
+<span>
+1. updateEventFromPayload : removed call to com/seshira/events/event/domain/models/Event::setDescription &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        event.setDescription(createEventPayload.description());</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7fb82f73_16'/>
+16
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_16'>1</a>
+<span>
+1. updateEventFromPayload : removed call to com/seshira/events/event/domain/models/Event::setStartDate &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        event.setStartDate(createEventPayload.startDate());</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7fb82f73_17'/>
+17
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_17'>1</a>
+<span>
+1. updateEventFromPayload : removed call to com/seshira/events/event/domain/models/Event::setEndDate &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        event.setEndDate(createEventPayload.endDate());</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7fb82f73_18'/>
+18
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_18'>1</a>
+<span>
+1. updateEventFromPayload : removed call to com/seshira/events/event/domain/models/Event::setLocationName &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        event.setLocationName(createEventPayload.locationName());</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7fb82f73_19'/>
+19
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_19'>1</a>
+<span>
+1. updateEventFromPayload : removed call to com/seshira/events/event/domain/models/Event::setLocationAddress &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        event.setLocationAddress(createEventPayload.locationAddress());</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7fb82f73_20'/>
+20
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_20'>1</a>
+<span>
+1. updateEventFromPayload : removed call to com/seshira/events/event/domain/models/Event::setOrganizerName &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        event.setOrganizerName(createEventPayload.organizerName());</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7fb82f73_21'/>
+21
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_21'>1</a>
+<span>
+1. updateEventFromPayload : removed call to com/seshira/events/event/domain/models/Event::setOrganizerUrl &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        event.setOrganizerUrl(createEventPayload.organizerUrl());</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7fb82f73_22'/>
+22
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_22'>1</a>
+<span>
+1. updateEventFromPayload : removed call to com/seshira/events/event/domain/models/Event::setUrl &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        event.setUrl(createEventPayload.url()); // link to the event page</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7fb82f73_23'/>
+23
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_23'>1</a>
+<span>
+1. updateEventFromPayload : removed call to com/seshira/events/event/domain/models/Event::setImage &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        event.setImage(createEventPayload.image()); // URL of an image</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7fb82f73_24'/>
+24
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_24'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    }</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7fb82f73_25'/>
+25
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_25'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7fb82f73_26'/>
+26
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_26'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public EventSeries createEventSeries(CreateEventPayload createEventPayload, Event parent) {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7fb82f73_27'/>
+27
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_27'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        EventSeries event = new EventSeries(</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7fb82f73_28'/>
+28
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_28'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>                UUID.randomUUID(),</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7fb82f73_29'/>
+29
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_29'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>                createEventPayload.name()</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7fb82f73_30'/>
+30
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_30'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        );</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7fb82f73_31'/>
+31
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_31'>1</a>
+<span>
+1. createEventSeries : removed call to com/seshira/events/event/domain/services/CreateEventService::updateEventFromPayload &rarr; SURVIVED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='survived'>        updateEventFromPayload(event, createEventPayload);</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7fb82f73_32'/>
+32
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_32'>1</a>
+<span>
+1. createEventSeries : removed call to com/seshira/events/event/domain/models/EventSeries::setParentEvent &rarr; SURVIVED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='survived'>        event.setParentEvent(parent);</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7fb82f73_33'/>
+33
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_33'>1</a>
+<span>
+1. createEventSeries : replaced return value with null for com/seshira/events/event/domain/services/CreateEventService::createEventSeries &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return event;</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7fb82f73_34'/>
+34
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_34'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7fb82f73_35'/>
+35
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_35'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7fb82f73_36'/>
+36
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_36'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public InterventionEducationEvent createIntervention(CreateEventPayload createEventPayload, Event parent) {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7fb82f73_37'/>
+37
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_37'>4</a>
+<span>
+1. createIntervention : removed conditional - replaced equality check with true &rarr; KILLED<br/>
+2. createIntervention : removed conditional - replaced equality check with true &rarr; KILLED<br/>
+3. createIntervention : removed conditional - replaced equality check with false &rarr; KILLED<br/>
+4. createIntervention : removed conditional - replaced equality check with false &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        boolean parentIsNullOrNotSession = parent == null || parent.getAdditionalType() != EventAdditionalType.SESSION;</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7fb82f73_38'/>
+38
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_38'>2</a>
+<span>
+1. createIntervention : removed conditional - replaced equality check with false &rarr; KILLED<br/>
+2. createIntervention : removed conditional - replaced equality check with true &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        if (parentIsNullOrNotSession)</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7fb82f73_39'/>
+39
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_39'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>            throw new BadInputException(&#34;An intervention can only be a sub-event of a Session&#34;);</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7fb82f73_40'/>
+40
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_40'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        InterventionEducationEvent event = new InterventionEducationEvent(UUID.randomUUID(), createEventPayload.name());</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7fb82f73_41'/>
+41
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_41'>1</a>
+<span>
+1. createIntervention : removed call to com/seshira/events/event/domain/services/CreateEventService::updateEventFromPayload &rarr; SURVIVED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='survived'>        updateEventFromPayload(event, createEventPayload);</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7fb82f73_42'/>
+42
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_42'>1</a>
+<span>
+1. createIntervention : removed call to com/seshira/events/event/domain/models/InterventionEducationEvent::setParentEvent &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        event.setParentEvent(parent);</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7fb82f73_43'/>
+43
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_43'>1</a>
+<span>
+1. createIntervention : replaced return value with null for com/seshira/events/event/domain/services/CreateEventService::createIntervention &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return event;</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7fb82f73_44'/>
+44
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_44'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7fb82f73_45'/>
+45
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_45'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7fb82f73_46'/>
+46
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_46'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public SessionEducationEvent createSession(CreateEventPayload createEventPayload, Event parent) {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7fb82f73_47'/>
+47
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_47'>4</a>
+<span>
+1. createSession : removed conditional - replaced equality check with false &rarr; KILLED<br/>
+2. createSession : removed conditional - replaced equality check with true &rarr; KILLED<br/>
+3. createSession : removed conditional - replaced equality check with false &rarr; KILLED<br/>
+4. createSession : removed conditional - replaced equality check with true &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        boolean parentIsNullOrCongress = parent == null || parent.getAdditionalType() != EventAdditionalType.CONGRESS;</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7fb82f73_48'/>
+48
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_48'>2</a>
+<span>
+1. createSession : removed conditional - replaced equality check with true &rarr; KILLED<br/>
+2. createSession : removed conditional - replaced equality check with false &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        if (parentIsNullOrCongress)</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7fb82f73_49'/>
+49
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_49'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>            throw new BadInputException(&#34;A session can only be a sub-event of a Congress&#34;);</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7fb82f73_50'/>
+50
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_50'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        SessionEducationEvent event = new SessionEducationEvent(</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7fb82f73_51'/>
+51
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_51'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>                UUID.randomUUID(),</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7fb82f73_52'/>
+52
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_52'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>                createEventPayload.name()</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7fb82f73_53'/>
+53
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_53'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        );</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7fb82f73_54'/>
+54
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_54'>1</a>
+<span>
+1. createSession : removed call to com/seshira/events/event/domain/services/CreateEventService::updateEventFromPayload &rarr; SURVIVED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='survived'>        updateEventFromPayload(event, createEventPayload);</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7fb82f73_55'/>
+55
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_55'>1</a>
+<span>
+1. createSession : removed call to com/seshira/events/event/domain/models/SessionEducationEvent::setParentEvent &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        event.setParentEvent(parent);</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7fb82f73_56'/>
+56
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_56'>1</a>
+<span>
+1. createSession : replaced return value with null for com/seshira/events/event/domain/services/CreateEventService::createSession &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return event;</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7fb82f73_57'/>
+57
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_57'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7fb82f73_58'/>
+58
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_58'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7fb82f73_59'/>
+59
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_59'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public CongressEducationEvent createCongress(CreateEventPayload createEventPayload, Event parent) {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7fb82f73_60'/>
+60
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_60'>4</a>
+<span>
+1. createCongress : removed conditional - replaced equality check with true &rarr; KILLED<br/>
+2. createCongress : removed conditional - replaced equality check with true &rarr; KILLED<br/>
+3. createCongress : removed conditional - replaced equality check with false &rarr; KILLED<br/>
+4. createCongress : removed conditional - replaced equality check with false &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        boolean parentIsNotNullAndNotEventSeries = parent != null &#38;&#38; parent.getAdditionalType() != EventAdditionalType.EVENT_SERIES;</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7fb82f73_61'/>
+61
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_61'>2</a>
+<span>
+1. createCongress : removed conditional - replaced equality check with true &rarr; KILLED<br/>
+2. createCongress : removed conditional - replaced equality check with false &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        if (parentIsNotNullAndNotEventSeries)</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7fb82f73_62'/>
+62
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_62'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>            throw new BadInputException(&#34;A congress can only be a sub-event of an EventSeries&#34;);</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7fb82f73_63'/>
+63
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_63'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        CongressEducationEvent event = new CongressEducationEvent(</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7fb82f73_64'/>
+64
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_64'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>                UUID.randomUUID(),</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7fb82f73_65'/>
+65
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_65'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>                createEventPayload.name());</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7fb82f73_66'/>
+66
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_66'>1</a>
+<span>
+1. createCongress : removed call to com/seshira/events/event/domain/services/CreateEventService::updateEventFromPayload &rarr; SURVIVED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='survived'>        updateEventFromPayload(event, createEventPayload);</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7fb82f73_67'/>
+67
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_67'>1</a>
+<span>
+1. createCongress : removed call to com/seshira/events/event/domain/models/CongressEducationEvent::setParentEvent &rarr; SURVIVED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='survived'>        event.setParentEvent(parent);</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7fb82f73_68'/>
+68
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_68'>1</a>
+<span>
+1. createCongress : replaced return value with null for com/seshira/events/event/domain/services/CreateEventService::createCongress &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return event;</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7fb82f73_69'/>
+69
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_69'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7fb82f73_70'/>
+70
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_70'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7fb82f73_71'/>
+71
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_71'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public Event createEvent(CreateEventPayload createEventPayload, Event parent) {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7fb82f73_72'/>
+72
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_72'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        Event event = new Event(</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7fb82f73_73'/>
+73
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_73'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>                UUID.randomUUID(),</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7fb82f73_74'/>
+74
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_74'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>                createEventPayload.name()</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7fb82f73_75'/>
+75
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_75'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        );</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7fb82f73_76'/>
+76
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_76'>1</a>
+<span>
+1. createEvent : removed call to com/seshira/events/event/domain/services/CreateEventService::updateEventFromPayload &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        updateEventFromPayload(event, createEventPayload);</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7fb82f73_77'/>
+77
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_77'>1</a>
+<span>
+1. createEvent : removed call to com/seshira/events/event/domain/models/Event::setParentEvent &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        event.setParentEvent(parent);</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7fb82f73_78'/>
+78
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_78'>1</a>
+<span>
+1. createEvent : replaced return value with null for com/seshira/events/event/domain/services/CreateEventService::createEvent &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return event;</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7fb82f73_79'/>
+79
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_79'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7fb82f73_80'/>
+80
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_80'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>}</span></pre></td></tr>
+
+
+
+<tr><td></td><td></td><td><h2>Mutations</h2></td></tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@7fb82f73_14'>14</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_14'/> 
+
+<p class='SURVIVED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>updateEventFromPayload<br/><b>Killed by : </b>none</span></span> removed call to com/seshira/events/event/domain/models/Event::setName &rarr; SURVIVED</span>
+<a title="Click to view covering tests" class="view-covered-by-tests" onClick="document.getElementById('MutationIdentifier-[location=Location-[clazz=com.seshira.events.event.domain.services.CreateEventService,-method=updateEventFromPayload,-methodDesc=(Lcom/seshira/events/event/domain/models/Event;Lcom/seshira/events/event/domain/services/models/CreateEventPayload;)V],-indexes=[6],-mutator=org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator]').style.display=(document.getElementById('MutationIdentifier-[location=Location-[clazz=com.seshira.events.event.domain.services.CreateEventService,-method=updateEventFromPayload,-methodDesc=(Lcom/seshira/events/event/domain/models/Event;Lcom/seshira/events/event/domain/services/models/CreateEventPayload;)V],-indexes=[6],-mutator=org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator]').style.display == 'block')?'none':'block';">Covering tests</a>
+<div class="covered-tests" id="MutationIdentifier-[location=Location-[clazz=com.seshira.events.event.domain.services.CreateEventService,-method=updateEventFromPayload,-methodDesc=(Lcom/seshira/events/event/domain/models/Event;Lcom/seshira/events/event/domain/services/models/CreateEventPayload;)V],-indexes=[6],-mutator=org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator]" style="display:none;">Covered by tests:
+<ul>
+<li>com.seshira.events.event.application.services.CreateEventServiceTest.[engine:junit-jupiter]/[class:com.seshira.events.event.application.services.CreateEventServiceTest]/[nested-class:EventCanBeCreated]/[method:testCreateEvent()]</li> <li>com.seshira.events.event.application.services.CreateEventServiceTest.[engine:junit-jupiter]/[class:com.seshira.events.event.application.services.CreateEventServiceTest]/[nested-class:EventCanBeCreated]/[method:testCreateEventWithParent()]</li> <li>com.seshira.events.event.application.services.CreateEventServiceTest.[engine:junit-jupiter]/[class:com.seshira.events.event.application.services.CreateEventServiceTest]/[nested-class:CongressCanBeCreated]/[method:testCreateCongress()]</li> <li>com.seshira.events.event.application.services.CreateEventServiceTest.[engine:junit-jupiter]/[class:com.seshira.events.event.application.services.CreateEventServiceTest]/[nested-class:InterventionCanBeCreated]/[method:testCreateInterventionShallFailIfNoOrIncorrectParentType()]</li> <li>com.seshira.events.event.application.services.CreateEventServiceTest.[engine:junit-jupiter]/[class:com.seshira.events.event.application.services.CreateEventServiceTest]/[nested-class:CongressCanBeCreated]/[method:testCreateCongressWithParent()]</li> <li>com.seshira.events.event.application.services.CreateEventServiceTest.[engine:junit-jupiter]/[class:com.seshira.events.event.application.services.CreateEventServiceTest]/[nested-class:EventCanBeCreated]/[method:testCreateEventWithAllFields()]</li> <li>com.seshira.events.event.application.services.CreateEventServiceTest.[engine:junit-jupiter]/[class:com.seshira.events.event.application.services.CreateEventServiceTest]/[nested-class:SessionCanBeCreated]/[method:testCreateSession()]</li> <li>com.seshira.events.event.application.services.GetEventServiceTest.[engine:junit-jupiter]/[class:com.seshira.events.event.application.services.GetEventServiceTest]/[nested-class:EventChildrenCanBeRetrieved]/[method:testCreateEvent()]</li> <li>com.seshira.events.event.application.services.CreateEventServiceTest.[engine:junit-jupiter]/[class:com.seshira.events.event.application.services.CreateEventServiceTest]/[nested-class:SessionCanBeCreated]/[method:testCreateSessionShallFailIfNoOrIncorrectParentType()]</li> <li>com.seshira.events.event.application.services.FilterEventServiceTest.[engine:junit-jupiter]/[class:com.seshira.events.event.application.services.FilterEventServiceTest]/[nested-class:EventsCanBeFilteredByAdditionalType]/[method:testReturnAllEventsIfAdditionalTypeIsNull()]</li> <li>com.seshira.events.event.application.services.CreateEventServiceTest.[engine:junit-jupiter]/[class:com.seshira.events.event.application.services.CreateEventServiceTest]/[nested-class:InterventionCanBeCreated]/[method:testCreateIntervention()]</li> 
+</ul>
+</div></div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@7fb82f73_15'>15</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_15'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>updateEventFromPayload<br/><b>Killed by : </b>com.seshira.events.event.application.services.CreateEventServiceTest.[engine:junit-jupiter]/[class:com.seshira.events.event.application.services.CreateEventServiceTest]/[nested-class:EventCanBeCreated]/[method:testCreateEventWithAllFields()]</span></span> removed call to com/seshira/events/event/domain/models/Event::setDescription &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@7fb82f73_16'>16</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_16'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>updateEventFromPayload<br/><b>Killed by : </b>com.seshira.events.event.application.services.CreateEventServiceTest.[engine:junit-jupiter]/[class:com.seshira.events.event.application.services.CreateEventServiceTest]/[nested-class:EventCanBeCreated]/[method:testCreateEventWithAllFields()]</span></span> removed call to com/seshira/events/event/domain/models/Event::setStartDate &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@7fb82f73_17'>17</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_17'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>updateEventFromPayload<br/><b>Killed by : </b>com.seshira.events.event.application.services.CreateEventServiceTest.[engine:junit-jupiter]/[class:com.seshira.events.event.application.services.CreateEventServiceTest]/[nested-class:EventCanBeCreated]/[method:testCreateEventWithAllFields()]</span></span> removed call to com/seshira/events/event/domain/models/Event::setEndDate &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@7fb82f73_18'>18</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_18'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>updateEventFromPayload<br/><b>Killed by : </b>com.seshira.events.event.application.services.CreateEventServiceTest.[engine:junit-jupiter]/[class:com.seshira.events.event.application.services.CreateEventServiceTest]/[nested-class:EventCanBeCreated]/[method:testCreateEventWithAllFields()]</span></span> removed call to com/seshira/events/event/domain/models/Event::setLocationName &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@7fb82f73_19'>19</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_19'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>updateEventFromPayload<br/><b>Killed by : </b>com.seshira.events.event.application.services.CreateEventServiceTest.[engine:junit-jupiter]/[class:com.seshira.events.event.application.services.CreateEventServiceTest]/[nested-class:EventCanBeCreated]/[method:testCreateEventWithAllFields()]</span></span> removed call to com/seshira/events/event/domain/models/Event::setLocationAddress &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@7fb82f73_20'>20</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_20'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>updateEventFromPayload<br/><b>Killed by : </b>com.seshira.events.event.application.services.CreateEventServiceTest.[engine:junit-jupiter]/[class:com.seshira.events.event.application.services.CreateEventServiceTest]/[nested-class:EventCanBeCreated]/[method:testCreateEventWithAllFields()]</span></span> removed call to com/seshira/events/event/domain/models/Event::setOrganizerName &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@7fb82f73_21'>21</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_21'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>updateEventFromPayload<br/><b>Killed by : </b>com.seshira.events.event.application.services.CreateEventServiceTest.[engine:junit-jupiter]/[class:com.seshira.events.event.application.services.CreateEventServiceTest]/[nested-class:EventCanBeCreated]/[method:testCreateEventWithAllFields()]</span></span> removed call to com/seshira/events/event/domain/models/Event::setOrganizerUrl &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@7fb82f73_22'>22</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_22'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>updateEventFromPayload<br/><b>Killed by : </b>com.seshira.events.event.application.services.CreateEventServiceTest.[engine:junit-jupiter]/[class:com.seshira.events.event.application.services.CreateEventServiceTest]/[nested-class:EventCanBeCreated]/[method:testCreateEventWithAllFields()]</span></span> removed call to com/seshira/events/event/domain/models/Event::setUrl &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@7fb82f73_23'>23</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_23'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>updateEventFromPayload<br/><b>Killed by : </b>com.seshira.events.event.application.services.CreateEventServiceTest.[engine:junit-jupiter]/[class:com.seshira.events.event.application.services.CreateEventServiceTest]/[nested-class:EventCanBeCreated]/[method:testCreateEventWithAllFields()]</span></span> removed call to com/seshira/events/event/domain/models/Event::setImage &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@7fb82f73_31'>31</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_31'/> 
+
+<p class='SURVIVED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>createEventSeries<br/><b>Killed by : </b>none</span></span> removed call to com/seshira/events/event/domain/services/CreateEventService::updateEventFromPayload &rarr; SURVIVED</span>
+<a title="Click to view covering tests" class="view-covered-by-tests" onClick="document.getElementById('MutationIdentifier-[location=Location-[clazz=com.seshira.events.event.domain.services.CreateEventService,-method=createEventSeries,-methodDesc=(Lcom/seshira/events/event/domain/services/models/CreateEventPayload;Lcom/seshira/events/event/domain/models/Event;)Lcom/seshira/events/event/domain/models/EventSeries;],-indexes=[19],-mutator=org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator]').style.display=(document.getElementById('MutationIdentifier-[location=Location-[clazz=com.seshira.events.event.domain.services.CreateEventService,-method=createEventSeries,-methodDesc=(Lcom/seshira/events/event/domain/services/models/CreateEventPayload;Lcom/seshira/events/event/domain/models/Event;)Lcom/seshira/events/event/domain/models/EventSeries;],-indexes=[19],-mutator=org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator]').style.display == 'block')?'none':'block';">Covering tests</a>
+<div class="covered-tests" id="MutationIdentifier-[location=Location-[clazz=com.seshira.events.event.domain.services.CreateEventService,-method=createEventSeries,-methodDesc=(Lcom/seshira/events/event/domain/services/models/CreateEventPayload;Lcom/seshira/events/event/domain/models/Event;)Lcom/seshira/events/event/domain/models/EventSeries;],-indexes=[19],-mutator=org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator]" style="display:none;">Covered by tests:
+<ul>
+<li>com.seshira.events.event.application.services.CreateEventServiceTest.[engine:junit-jupiter]/[class:com.seshira.events.event.application.services.CreateEventServiceTest]/[nested-class:CongressCanBeCreated]/[method:testCreateCongressWithParent()]</li> 
+</ul>
+</div></div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@7fb82f73_32'>32</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_32'/> 
+
+<p class='SURVIVED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>createEventSeries<br/><b>Killed by : </b>none</span></span> removed call to com/seshira/events/event/domain/models/EventSeries::setParentEvent &rarr; SURVIVED</span>
+<a title="Click to view covering tests" class="view-covered-by-tests" onClick="document.getElementById('MutationIdentifier-[location=Location-[clazz=com.seshira.events.event.domain.services.CreateEventService,-method=createEventSeries,-methodDesc=(Lcom/seshira/events/event/domain/services/models/CreateEventPayload;Lcom/seshira/events/event/domain/models/Event;)Lcom/seshira/events/event/domain/models/EventSeries;],-indexes=[24],-mutator=org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator]').style.display=(document.getElementById('MutationIdentifier-[location=Location-[clazz=com.seshira.events.event.domain.services.CreateEventService,-method=createEventSeries,-methodDesc=(Lcom/seshira/events/event/domain/services/models/CreateEventPayload;Lcom/seshira/events/event/domain/models/Event;)Lcom/seshira/events/event/domain/models/EventSeries;],-indexes=[24],-mutator=org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator]').style.display == 'block')?'none':'block';">Covering tests</a>
+<div class="covered-tests" id="MutationIdentifier-[location=Location-[clazz=com.seshira.events.event.domain.services.CreateEventService,-method=createEventSeries,-methodDesc=(Lcom/seshira/events/event/domain/services/models/CreateEventPayload;Lcom/seshira/events/event/domain/models/Event;)Lcom/seshira/events/event/domain/models/EventSeries;],-indexes=[24],-mutator=org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator]" style="display:none;">Covered by tests:
+<ul>
+<li>com.seshira.events.event.application.services.CreateEventServiceTest.[engine:junit-jupiter]/[class:com.seshira.events.event.application.services.CreateEventServiceTest]/[nested-class:CongressCanBeCreated]/[method:testCreateCongressWithParent()]</li> 
+</ul>
+</div></div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@7fb82f73_33'>33</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_33'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>createEventSeries<br/><b>Killed by : </b>com.seshira.events.event.application.services.CreateEventServiceTest.[engine:junit-jupiter]/[class:com.seshira.events.event.application.services.CreateEventServiceTest]/[nested-class:CongressCanBeCreated]/[method:testCreateCongressWithParent()]</span></span> replaced return value with null for com/seshira/events/event/domain/services/CreateEventService::createEventSeries &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@7fb82f73_37'>37</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_37'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>createIntervention<br/><b>Killed by : </b>com.seshira.events.event.application.services.CreateEventServiceTest.[engine:junit-jupiter]/[class:com.seshira.events.event.application.services.CreateEventServiceTest]/[nested-class:InterventionCanBeCreated]/[method:testCreateInterventionShallFailIfNoOrIncorrectParentType()]</span></span> removed conditional - replaced equality check with true &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>createIntervention<br/><b>Killed by : </b>com.seshira.events.event.application.services.CreateEventServiceTest.[engine:junit-jupiter]/[class:com.seshira.events.event.application.services.CreateEventServiceTest]/[nested-class:InterventionCanBeCreated]/[method:testCreateIntervention()]</span></span> removed conditional - replaced equality check with true &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>createIntervention<br/><b>Killed by : </b>com.seshira.events.event.application.services.CreateEventServiceTest.[engine:junit-jupiter]/[class:com.seshira.events.event.application.services.CreateEventServiceTest]/[nested-class:InterventionCanBeCreated]/[method:testCreateIntervention()]</span></span> removed conditional - replaced equality check with false &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>createIntervention<br/><b>Killed by : </b>com.seshira.events.event.application.services.CreateEventServiceTest.[engine:junit-jupiter]/[class:com.seshira.events.event.application.services.CreateEventServiceTest]/[nested-class:InterventionCanBeCreated]/[method:testCreateInterventionShallFailIfNoOrIncorrectParentType()]</span></span> removed conditional - replaced equality check with false &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@7fb82f73_38'>38</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_38'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>createIntervention<br/><b>Killed by : </b>com.seshira.events.event.application.services.CreateEventServiceTest.[engine:junit-jupiter]/[class:com.seshira.events.event.application.services.CreateEventServiceTest]/[nested-class:InterventionCanBeCreated]/[method:testCreateInterventionShallFailIfNoOrIncorrectParentType()]</span></span> removed conditional - replaced equality check with false &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>createIntervention<br/><b>Killed by : </b>com.seshira.events.event.application.services.CreateEventServiceTest.[engine:junit-jupiter]/[class:com.seshira.events.event.application.services.CreateEventServiceTest]/[nested-class:InterventionCanBeCreated]/[method:testCreateIntervention()]</span></span> removed conditional - replaced equality check with true &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@7fb82f73_41'>41</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_41'/> 
+
+<p class='SURVIVED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>createIntervention<br/><b>Killed by : </b>none</span></span> removed call to com/seshira/events/event/domain/services/CreateEventService::updateEventFromPayload &rarr; SURVIVED</span>
+<a title="Click to view covering tests" class="view-covered-by-tests" onClick="document.getElementById('MutationIdentifier-[location=Location-[clazz=com.seshira.events.event.domain.services.CreateEventService,-method=createIntervention,-methodDesc=(Lcom/seshira/events/event/domain/services/models/CreateEventPayload;Lcom/seshira/events/event/domain/models/Event;)Lcom/seshira/events/event/domain/models/InterventionEducationEvent;],-indexes=[45],-mutator=org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator]').style.display=(document.getElementById('MutationIdentifier-[location=Location-[clazz=com.seshira.events.event.domain.services.CreateEventService,-method=createIntervention,-methodDesc=(Lcom/seshira/events/event/domain/services/models/CreateEventPayload;Lcom/seshira/events/event/domain/models/Event;)Lcom/seshira/events/event/domain/models/InterventionEducationEvent;],-indexes=[45],-mutator=org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator]').style.display == 'block')?'none':'block';">Covering tests</a>
+<div class="covered-tests" id="MutationIdentifier-[location=Location-[clazz=com.seshira.events.event.domain.services.CreateEventService,-method=createIntervention,-methodDesc=(Lcom/seshira/events/event/domain/services/models/CreateEventPayload;Lcom/seshira/events/event/domain/models/Event;)Lcom/seshira/events/event/domain/models/InterventionEducationEvent;],-indexes=[45],-mutator=org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator]" style="display:none;">Covered by tests:
+<ul>
+<li>com.seshira.events.event.application.services.CreateEventServiceTest.[engine:junit-jupiter]/[class:com.seshira.events.event.application.services.CreateEventServiceTest]/[nested-class:InterventionCanBeCreated]/[method:testCreateIntervention()]</li> 
+</ul>
+</div></div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@7fb82f73_42'>42</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_42'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>createIntervention<br/><b>Killed by : </b>com.seshira.events.event.application.services.CreateEventServiceTest.[engine:junit-jupiter]/[class:com.seshira.events.event.application.services.CreateEventServiceTest]/[nested-class:InterventionCanBeCreated]/[method:testCreateIntervention()]</span></span> removed call to com/seshira/events/event/domain/models/InterventionEducationEvent::setParentEvent &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@7fb82f73_43'>43</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_43'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>createIntervention<br/><b>Killed by : </b>com.seshira.events.event.application.services.CreateEventServiceTest.[engine:junit-jupiter]/[class:com.seshira.events.event.application.services.CreateEventServiceTest]/[nested-class:InterventionCanBeCreated]/[method:testCreateIntervention()]</span></span> replaced return value with null for com/seshira/events/event/domain/services/CreateEventService::createIntervention &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@7fb82f73_47'>47</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_47'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>createSession<br/><b>Killed by : </b>com.seshira.events.event.application.services.CreateEventServiceTest.[engine:junit-jupiter]/[class:com.seshira.events.event.application.services.CreateEventServiceTest]/[nested-class:SessionCanBeCreated]/[method:testCreateSession()]</span></span> removed conditional - replaced equality check with false &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>createSession<br/><b>Killed by : </b>com.seshira.events.event.application.services.CreateEventServiceTest.[engine:junit-jupiter]/[class:com.seshira.events.event.application.services.CreateEventServiceTest]/[nested-class:SessionCanBeCreated]/[method:testCreateSession()]</span></span> removed conditional - replaced equality check with true &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>createSession<br/><b>Killed by : </b>com.seshira.events.event.application.services.CreateEventServiceTest.[engine:junit-jupiter]/[class:com.seshira.events.event.application.services.CreateEventServiceTest]/[nested-class:SessionCanBeCreated]/[method:testCreateSessionShallFailIfNoOrIncorrectParentType()]</span></span> removed conditional - replaced equality check with false &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>createSession<br/><b>Killed by : </b>com.seshira.events.event.application.services.CreateEventServiceTest.[engine:junit-jupiter]/[class:com.seshira.events.event.application.services.CreateEventServiceTest]/[nested-class:SessionCanBeCreated]/[method:testCreateSessionShallFailIfNoOrIncorrectParentType()]</span></span> removed conditional - replaced equality check with true &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@7fb82f73_48'>48</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_48'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>createSession<br/><b>Killed by : </b>com.seshira.events.event.application.services.CreateEventServiceTest.[engine:junit-jupiter]/[class:com.seshira.events.event.application.services.CreateEventServiceTest]/[nested-class:SessionCanBeCreated]/[method:testCreateSession()]</span></span> removed conditional - replaced equality check with true &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>createSession<br/><b>Killed by : </b>com.seshira.events.event.application.services.CreateEventServiceTest.[engine:junit-jupiter]/[class:com.seshira.events.event.application.services.CreateEventServiceTest]/[nested-class:SessionCanBeCreated]/[method:testCreateSessionShallFailIfNoOrIncorrectParentType()]</span></span> removed conditional - replaced equality check with false &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@7fb82f73_54'>54</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_54'/> 
+
+<p class='SURVIVED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>createSession<br/><b>Killed by : </b>none</span></span> removed call to com/seshira/events/event/domain/services/CreateEventService::updateEventFromPayload &rarr; SURVIVED</span>
+<a title="Click to view covering tests" class="view-covered-by-tests" onClick="document.getElementById('MutationIdentifier-[location=Location-[clazz=com.seshira.events.event.domain.services.CreateEventService,-method=createSession,-methodDesc=(Lcom/seshira/events/event/domain/services/models/CreateEventPayload;Lcom/seshira/events/event/domain/models/Event;)Lcom/seshira/events/event/domain/models/SessionEducationEvent;],-indexes=[49],-mutator=org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator]').style.display=(document.getElementById('MutationIdentifier-[location=Location-[clazz=com.seshira.events.event.domain.services.CreateEventService,-method=createSession,-methodDesc=(Lcom/seshira/events/event/domain/services/models/CreateEventPayload;Lcom/seshira/events/event/domain/models/Event;)Lcom/seshira/events/event/domain/models/SessionEducationEvent;],-indexes=[49],-mutator=org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator]').style.display == 'block')?'none':'block';">Covering tests</a>
+<div class="covered-tests" id="MutationIdentifier-[location=Location-[clazz=com.seshira.events.event.domain.services.CreateEventService,-method=createSession,-methodDesc=(Lcom/seshira/events/event/domain/services/models/CreateEventPayload;Lcom/seshira/events/event/domain/models/Event;)Lcom/seshira/events/event/domain/models/SessionEducationEvent;],-indexes=[49],-mutator=org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator]" style="display:none;">Covered by tests:
+<ul>
+<li>com.seshira.events.event.application.services.CreateEventServiceTest.[engine:junit-jupiter]/[class:com.seshira.events.event.application.services.CreateEventServiceTest]/[nested-class:SessionCanBeCreated]/[method:testCreateSession()]</li> <li>com.seshira.events.event.application.services.FilterEventServiceTest.[engine:junit-jupiter]/[class:com.seshira.events.event.application.services.FilterEventServiceTest]/[nested-class:EventsCanBeFilteredByAdditionalType]/[method:testReturnAllEventsIfAdditionalTypeIsNull()]</li> <li>com.seshira.events.event.application.services.CreateEventServiceTest.[engine:junit-jupiter]/[class:com.seshira.events.event.application.services.CreateEventServiceTest]/[nested-class:InterventionCanBeCreated]/[method:testCreateIntervention()]</li> 
+</ul>
+</div></div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@7fb82f73_55'>55</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_55'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>createSession<br/><b>Killed by : </b>com.seshira.events.event.application.services.CreateEventServiceTest.[engine:junit-jupiter]/[class:com.seshira.events.event.application.services.CreateEventServiceTest]/[nested-class:SessionCanBeCreated]/[method:testCreateSession()]</span></span> removed call to com/seshira/events/event/domain/models/SessionEducationEvent::setParentEvent &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@7fb82f73_56'>56</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_56'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>createSession<br/><b>Killed by : </b>com.seshira.events.event.application.services.CreateEventServiceTest.[engine:junit-jupiter]/[class:com.seshira.events.event.application.services.CreateEventServiceTest]/[nested-class:SessionCanBeCreated]/[method:testCreateSession()]</span></span> replaced return value with null for com/seshira/events/event/domain/services/CreateEventService::createSession &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@7fb82f73_60'>60</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_60'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>createCongress<br/><b>Killed by : </b>com.seshira.events.event.application.services.CreateEventServiceTest.[engine:junit-jupiter]/[class:com.seshira.events.event.application.services.CreateEventServiceTest]/[nested-class:CongressCanBeCreated]/[method:testCreateCongressWithParent()]</span></span> removed conditional - replaced equality check with true &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>createCongress<br/><b>Killed by : </b>com.seshira.events.event.application.services.CreateEventServiceTest.[engine:junit-jupiter]/[class:com.seshira.events.event.application.services.CreateEventServiceTest]/[nested-class:CongressCanBeCreated]/[method:testCreateCongress()]</span></span> removed conditional - replaced equality check with true &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>createCongress<br/><b>Killed by : </b>com.seshira.events.event.application.services.CreateEventServiceTest.[engine:junit-jupiter]/[class:com.seshira.events.event.application.services.CreateEventServiceTest]/[nested-class:CongressCanBeCreated]/[method:testCreateCongressWithParent()]</span></span> removed conditional - replaced equality check with false &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>createCongress<br/><b>Killed by : </b>com.seshira.events.event.application.services.CreateEventServiceTest.[engine:junit-jupiter]/[class:com.seshira.events.event.application.services.CreateEventServiceTest]/[nested-class:CongressCanBeCreated]/[method:testCreateCongressWithParent()]</span></span> removed conditional - replaced equality check with false &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@7fb82f73_61'>61</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_61'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>createCongress<br/><b>Killed by : </b>com.seshira.events.event.application.services.CreateEventServiceTest.[engine:junit-jupiter]/[class:com.seshira.events.event.application.services.CreateEventServiceTest]/[nested-class:CongressCanBeCreated]/[method:testCreateCongress()]</span></span> removed conditional - replaced equality check with true &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>createCongress<br/><b>Killed by : </b>com.seshira.events.event.application.services.CreateEventServiceTest.[engine:junit-jupiter]/[class:com.seshira.events.event.application.services.CreateEventServiceTest]/[nested-class:CongressCanBeCreated]/[method:testCreateCongressWithParent()]</span></span> removed conditional - replaced equality check with false &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@7fb82f73_66'>66</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_66'/> 
+
+<p class='SURVIVED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>createCongress<br/><b>Killed by : </b>none</span></span> removed call to com/seshira/events/event/domain/services/CreateEventService::updateEventFromPayload &rarr; SURVIVED</span>
+<a title="Click to view covering tests" class="view-covered-by-tests" onClick="document.getElementById('MutationIdentifier-[location=Location-[clazz=com.seshira.events.event.domain.services.CreateEventService,-method=createCongress,-methodDesc=(Lcom/seshira/events/event/domain/services/models/CreateEventPayload;Lcom/seshira/events/event/domain/models/Event;)Lcom/seshira/events/event/domain/models/CongressEducationEvent;],-indexes=[47],-mutator=org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator]').style.display=(document.getElementById('MutationIdentifier-[location=Location-[clazz=com.seshira.events.event.domain.services.CreateEventService,-method=createCongress,-methodDesc=(Lcom/seshira/events/event/domain/services/models/CreateEventPayload;Lcom/seshira/events/event/domain/models/Event;)Lcom/seshira/events/event/domain/models/CongressEducationEvent;],-indexes=[47],-mutator=org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator]').style.display == 'block')?'none':'block';">Covering tests</a>
+<div class="covered-tests" id="MutationIdentifier-[location=Location-[clazz=com.seshira.events.event.domain.services.CreateEventService,-method=createCongress,-methodDesc=(Lcom/seshira/events/event/domain/services/models/CreateEventPayload;Lcom/seshira/events/event/domain/models/Event;)Lcom/seshira/events/event/domain/models/CongressEducationEvent;],-indexes=[47],-mutator=org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator]" style="display:none;">Covered by tests:
+<ul>
+<li>com.seshira.events.event.application.services.CreateEventServiceTest.[engine:junit-jupiter]/[class:com.seshira.events.event.application.services.CreateEventServiceTest]/[nested-class:CongressCanBeCreated]/[method:testCreateCongress()]</li> <li>com.seshira.events.event.application.services.CreateEventServiceTest.[engine:junit-jupiter]/[class:com.seshira.events.event.application.services.CreateEventServiceTest]/[nested-class:CongressCanBeCreated]/[method:testCreateCongressWithParent()]</li> <li>com.seshira.events.event.application.services.CreateEventServiceTest.[engine:junit-jupiter]/[class:com.seshira.events.event.application.services.CreateEventServiceTest]/[nested-class:SessionCanBeCreated]/[method:testCreateSession()]</li> <li>com.seshira.events.event.application.services.FilterEventServiceTest.[engine:junit-jupiter]/[class:com.seshira.events.event.application.services.FilterEventServiceTest]/[nested-class:EventsCanBeFilteredByAdditionalType]/[method:testReturnAllEventsIfAdditionalTypeIsNull()]</li> <li>com.seshira.events.event.application.services.CreateEventServiceTest.[engine:junit-jupiter]/[class:com.seshira.events.event.application.services.CreateEventServiceTest]/[nested-class:InterventionCanBeCreated]/[method:testCreateIntervention()]</li> 
+</ul>
+</div></div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@7fb82f73_67'>67</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_67'/> 
+
+<p class='SURVIVED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>createCongress<br/><b>Killed by : </b>none</span></span> removed call to com/seshira/events/event/domain/models/CongressEducationEvent::setParentEvent &rarr; SURVIVED</span>
+<a title="Click to view covering tests" class="view-covered-by-tests" onClick="document.getElementById('MutationIdentifier-[location=Location-[clazz=com.seshira.events.event.domain.services.CreateEventService,-method=createCongress,-methodDesc=(Lcom/seshira/events/event/domain/services/models/CreateEventPayload;Lcom/seshira/events/event/domain/models/Event;)Lcom/seshira/events/event/domain/models/CongressEducationEvent;],-indexes=[52],-mutator=org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator]').style.display=(document.getElementById('MutationIdentifier-[location=Location-[clazz=com.seshira.events.event.domain.services.CreateEventService,-method=createCongress,-methodDesc=(Lcom/seshira/events/event/domain/services/models/CreateEventPayload;Lcom/seshira/events/event/domain/models/Event;)Lcom/seshira/events/event/domain/models/CongressEducationEvent;],-indexes=[52],-mutator=org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator]').style.display == 'block')?'none':'block';">Covering tests</a>
+<div class="covered-tests" id="MutationIdentifier-[location=Location-[clazz=com.seshira.events.event.domain.services.CreateEventService,-method=createCongress,-methodDesc=(Lcom/seshira/events/event/domain/services/models/CreateEventPayload;Lcom/seshira/events/event/domain/models/Event;)Lcom/seshira/events/event/domain/models/CongressEducationEvent;],-indexes=[52],-mutator=org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator]" style="display:none;">Covered by tests:
+<ul>
+<li>com.seshira.events.event.application.services.CreateEventServiceTest.[engine:junit-jupiter]/[class:com.seshira.events.event.application.services.CreateEventServiceTest]/[nested-class:CongressCanBeCreated]/[method:testCreateCongress()]</li> <li>com.seshira.events.event.application.services.CreateEventServiceTest.[engine:junit-jupiter]/[class:com.seshira.events.event.application.services.CreateEventServiceTest]/[nested-class:CongressCanBeCreated]/[method:testCreateCongressWithParent()]</li> <li>com.seshira.events.event.application.services.CreateEventServiceTest.[engine:junit-jupiter]/[class:com.seshira.events.event.application.services.CreateEventServiceTest]/[nested-class:SessionCanBeCreated]/[method:testCreateSession()]</li> <li>com.seshira.events.event.application.services.FilterEventServiceTest.[engine:junit-jupiter]/[class:com.seshira.events.event.application.services.FilterEventServiceTest]/[nested-class:EventsCanBeFilteredByAdditionalType]/[method:testReturnAllEventsIfAdditionalTypeIsNull()]</li> <li>com.seshira.events.event.application.services.CreateEventServiceTest.[engine:junit-jupiter]/[class:com.seshira.events.event.application.services.CreateEventServiceTest]/[nested-class:InterventionCanBeCreated]/[method:testCreateIntervention()]</li> 
+</ul>
+</div></div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@7fb82f73_68'>68</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_68'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>createCongress<br/><b>Killed by : </b>com.seshira.events.event.application.services.CreateEventServiceTest.[engine:junit-jupiter]/[class:com.seshira.events.event.application.services.CreateEventServiceTest]/[nested-class:CongressCanBeCreated]/[method:testCreateCongress()]</span></span> replaced return value with null for com/seshira/events/event/domain/services/CreateEventService::createCongress &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@7fb82f73_76'>76</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_76'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>createEvent<br/><b>Killed by : </b>com.seshira.events.event.application.services.CreateEventServiceTest.[engine:junit-jupiter]/[class:com.seshira.events.event.application.services.CreateEventServiceTest]/[nested-class:EventCanBeCreated]/[method:testCreateEventWithAllFields()]</span></span> removed call to com/seshira/events/event/domain/services/CreateEventService::updateEventFromPayload &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@7fb82f73_77'>77</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_77'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>createEvent<br/><b>Killed by : </b>com.seshira.events.event.application.services.CreateEventServiceTest.[engine:junit-jupiter]/[class:com.seshira.events.event.application.services.CreateEventServiceTest]/[nested-class:EventCanBeCreated]/[method:testCreateEventWithParent()]</span></span> removed call to com/seshira/events/event/domain/models/Event::setParentEvent &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@7fb82f73_78'>78</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@7fb82f73_78'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>createEvent<br/><b>Killed by : </b>com.seshira.events.event.application.services.CreateEventServiceTest.[engine:junit-jupiter]/[class:com.seshira.events.event.application.services.CreateEventServiceTest]/[nested-class:EventCanBeCreated]/[method:testCreateEvent()]</span></span> replaced return value with null for com/seshira/events/event/domain/services/CreateEventService::createEvent &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+</table>
+
+
+<h2>Active mutators</h2>
+<ul>
+<li class='mutator'>CONDITIONALS_BOUNDARY</li>
+<li class='mutator'>EMPTY_RETURNS</li>
+<li class='mutator'>EXPERIMENTAL_SWITCH</li>
+<li class='mutator'>FALSE_RETURNS</li>
+<li class='mutator'>INCREMENTS</li>
+<li class='mutator'>INVERT_NEGS</li>
+<li class='mutator'>MATH</li>
+<li class='mutator'>NULL_RETURNS</li>
+<li class='mutator'>PRIMITIVE_RETURNS</li>
+<li class='mutator'>REMOVE_CONDITIONALS_EQUAL_ELSE</li>
+<li class='mutator'>REMOVE_CONDITIONALS_EQUAL_IF</li>
+<li class='mutator'>REMOVE_CONDITIONALS_ORDER_ELSE</li>
+<li class='mutator'>REMOVE_CONDITIONALS_ORDER_IF</li>
+<li class='mutator'>TRUE_RETURNS</li>
+<li class='mutator'>VOID_METHOD_CALLS</li>
+
+</ul>
+
+<h2>Tests examined</h2>
+<ul>
+<li>com.seshira.events.event.application.services.CreateEventServiceTest.[engine:junit-jupiter]/[class:com.seshira.events.event.application.services.CreateEventServiceTest]/[nested-class:SessionCanBeCreated]/[method:testCreateSession()] (11 ms)</li><li>com.seshira.events.event.application.services.CreateEventServiceTest.[engine:junit-jupiter]/[class:com.seshira.events.event.application.services.CreateEventServiceTest]/[nested-class:SessionCanBeCreated]/[method:testCreateSessionShallFailIfNoOrIncorrectParentType()] (23 ms)</li><li>com.seshira.events.event.application.services.FilterEventServiceTest.[engine:junit-jupiter]/[class:com.seshira.events.event.application.services.FilterEventServiceTest]/[nested-class:EventsCanBeFilteredByAdditionalType]/[method:testReturnAllEventsIfAdditionalTypeIsNull()] (48 ms)</li><li>com.seshira.events.event.application.services.CreateEventServiceTest.[engine:junit-jupiter]/[class:com.seshira.events.event.application.services.CreateEventServiceTest]/[nested-class:InterventionCanBeCreated]/[method:testCreateIntervention()] (872 ms)</li><li>com.seshira.events.event.application.services.CreateEventServiceTest.[engine:junit-jupiter]/[class:com.seshira.events.event.application.services.CreateEventServiceTest]/[nested-class:EventCanBeCreated]/[method:testCreateEvent()] (5 ms)</li><li>com.seshira.events.event.application.services.CreateEventServiceTest.[engine:junit-jupiter]/[class:com.seshira.events.event.application.services.CreateEventServiceTest]/[nested-class:EventCanBeCreated]/[method:testCreateEventWithParent()] (6 ms)</li><li>com.seshira.events.event.application.services.CreateEventServiceTest.[engine:junit-jupiter]/[class:com.seshira.events.event.application.services.CreateEventServiceTest]/[nested-class:CongressCanBeCreated]/[method:testCreateCongress()] (6 ms)</li><li>com.seshira.events.event.application.services.CreateEventServiceTest.[engine:junit-jupiter]/[class:com.seshira.events.event.application.services.CreateEventServiceTest]/[nested-class:InterventionCanBeCreated]/[method:testCreateInterventionShallFailIfNoOrIncorrectParentType()] (8 ms)</li><li>com.seshira.events.event.application.services.CreateEventServiceTest.[engine:junit-jupiter]/[class:com.seshira.events.event.application.services.CreateEventServiceTest]/[nested-class:CongressCanBeCreated]/[method:testCreateCongressWithParent()] (7 ms)</li><li>com.seshira.events.event.application.services.CreateEventServiceTest.[engine:junit-jupiter]/[class:com.seshira.events.event.application.services.CreateEventServiceTest]/[nested-class:EventCanBeCreated]/[method:testCreateEventWithAllFields()] (11 ms)</li><li>com.seshira.events.event.application.services.GetEventServiceTest.[engine:junit-jupiter]/[class:com.seshira.events.event.application.services.GetEventServiceTest]/[nested-class:EventChildrenCanBeRetrieved]/[method:testCreateEvent()] (14 ms)</li>
+</ul>
+
+<br/>
+
+Report generated by <a href='https://pitest.org'>PIT</a> 1.22.0
+
+</body>
+</html>
