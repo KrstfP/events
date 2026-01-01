@@ -1,7 +1,4 @@
 spring:
-  security:
-    csrf:
-      enabled: false
   application:
     name: events
   datasource:
